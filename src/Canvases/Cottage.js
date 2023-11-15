@@ -1,35 +1,77 @@
-import React, { useRef, useState, Suspense } from 'react';
+import React, { Suspense } from 'react';
 import * as THREE from 'three';
-import { Canvas, extend, useThree, useFrame, useLoader } from '@react-three/fiber';
-import { OrbitControls } from "@react-three/drei";
-import { TextureLoader } from 'three/src/loaders/TextureLoader';
-import { Plane, Html } from "@react-three/drei";
+import { Canvas, useLoader } from '@react-three/fiber';
+import { TextureLoader } from 'three';
+import { OrbitControls, Plane } from "@react-three/drei";
 
-import SimpleBox from '../Geometry/Box';
-import ModelViewer from '../Models/ModelViewer';
+import AlchemyTable from '../Geometry/Cottage/AlchemyTable';
+import ArmillarySphere from '../Geometry/Cottage/ArmillarySphere';
+import Alchemist from '../Geometry/Cottage/Alchemist';
 
 // TODO:
-// 1. add walls
+// 1. add walls- DONE
 // 2. adjust camera position
 
 function Cottage() {
+    return (
+        <Canvas
+        camera={{ fov: 75, position: [8, 6, 8]}}
+        shadows>
+            <Suspense fallback={null}>
+                <Room />
+                <Alchemist />
+                <AlchemyTable position={[-15, 0, -12]}/>
+                <ArmillarySphere position={[-15, 2, 0]}/>
+
+                <OrbitControls maxDistance={10} />
+            </Suspense>
+        </Canvas>
+    );
+}
+
+function Room() {
+    const colorMap = useLoader(TextureLoader, "assets/cottage/wallpaper-texture-3.jpg");
+    colorMap.wrapS = THREE.RepeatWrapping;
+    colorMap.wrapT = THREE.RepeatWrapping;
+    colorMap.repeat.set(2, 2);
 
     return (
         <>
-            <ambientLight />
+            <ambientLight castShadow />
             <Plane
                 rotation={[-Math.PI / 2, 0, 0]}
-                position={[0, -1, 0]}
-                args={[1000, 1000]}
+                position={[0, 0, 0]}
+                args={[40, 40]}
+                receiveShadow
             >
-                <meshStandardMaterial attach="material" color="white" />
+                <meshStandardMaterial attach="material" color={"white"} />
             </Plane>
-            
-            <ModelViewer
-            modelpath="assets/cutesy_styled_wizard_themed_props.glb"
-            /> 
-
-            <OrbitControls maxDistance={5} />
+            <Plane
+                position={[0, 0, -20]}
+                args={[40, 50]}
+            >
+                <meshStandardMaterial attach="material" map={colorMap} />
+            </Plane>
+            <Plane
+                rotation={[0, Math.PI / 2, 0]}
+                position={[-20, 0, 0]}
+                args={[40, 50]}
+            >
+                <meshStandardMaterial attach="material" map={colorMap} />
+            </Plane>
+            <Plane
+                position={[0, 0, 20]}
+                args={[40, 50]}
+            >
+                <meshStandardMaterial attach="material" map={colorMap} />
+            </Plane>
+            <Plane
+                rotation={[0, Math.PI / 2, 0]}
+                position={[20, 0, 0]}
+                args={[40, 50]}
+            >
+                <meshStandardMaterial attach="material" map={colorMap} />
+            </Plane>
         </>
     );
 }

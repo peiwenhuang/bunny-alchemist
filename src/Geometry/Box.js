@@ -18,7 +18,7 @@ function SimpleBox(props) {
         onClick={(event) => click(!clicked)}
         onPointerOver={(event) => hover(true)}
         onPointerOut={(event) => hover(false)}>
-        <boxGeometry args={[1, 1, 1]} />
+        <boxGeometry args={[5, 5, 5]} cashShadow />
         <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
       </mesh>
     )

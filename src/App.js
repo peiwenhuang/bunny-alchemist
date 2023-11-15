@@ -5,22 +5,19 @@ import { OrbitControls } from "@react-three/drei";
 
 import Forest from './Canvases/Forest';
 import Cottage from './Canvases/Cottage';
+import Cosmic from './Canvases/Cosmic';
 import DialogBox from './Dialogue/Dialogue';
 
-
-
-const messages = [
-    "This is a very cool RPG dialog message.",
-    "If you would like to see more awesome stuff, check out the other writeups at codeworkshop.dev!",
-    "Remember to wash your hands!",
-];
 const scenes = ["forest", "cottage", "cosmic", "garden", "desk"];
 
 function App() {
-  const [scene, setScene] = useState("cottage");
+  const [scene, setScene] = useState("cosmic");
+  const [currentMessage, setCurrentMessage] = useState(0);
 
   const handleSetScene = (newScene) => {
+    // TODO: set transition
     setScene(newScene);
+    setCurrentMessage(0);
   }
 
 
@@ -34,7 +31,7 @@ function App() {
       return <Cottage />
     }
     if(scene == "cosmic") {
-      return <Forest />
+      return <Cosmic />
     }
     if(scene == "garden") {
       return <Forest />
@@ -46,13 +43,13 @@ function App() {
 
   return (
     <>
-      <Canvas>
-        <Suspense fallback={null}>
-          {display()}
-          <OrbitControls maxDistance={5} />
-        </Suspense>
-      </Canvas>
-      <DialogBox messages={messages} msgLength={messages.length} />
+      {display()}
+      <DialogBox
+      scene={scene}
+      handleSetScene={handleSetScene}
+      currentMessage={currentMessage}
+      setCurrentMessage={setCurrentMessage}
+      />
     </>
   );
 }

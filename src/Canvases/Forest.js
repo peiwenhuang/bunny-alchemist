@@ -9,16 +9,22 @@ import SimpleBox from '../Geometry/Box';
 
 function Forest() {
   return (
-    <Canvas>
-      <Suspense fallback={null}>
-        <ambientLight />
-        <World />
-        <SimpleBox />
-        
-        
+    <Canvas
+    camera={{ fov: 75, position: [8, 6, 8]}}
+    shadows>
+        <Suspense fallback={null}>
+          <directionalLight
+            intensity={1}
+            castShadow={true}
+            shadow-bias={-0.0002}
+            shadow-mapSize={[32, 32]}
+          />
+          <ambientLight />
+          <World />
+          <SimpleBox />
 
-        <OrbitControls maxDistance={5} />
-      </Suspense>
+          <OrbitControls />
+        </Suspense>
     </Canvas>
   );
 }
