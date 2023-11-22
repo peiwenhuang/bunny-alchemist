@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/bunny-alchemist/static/css/main.331fe97f.css",
-    "main.js": "/bunny-alchemist/static/js/main.8541ad0c.js",
+    "main.css": "/bunny-alchemist/static/css/main.5ae80b33.css",
+    "main.js": "/bunny-alchemist/static/js/main.3a33515b.js",
     "static/js/787.815ed969.chunk.js": "/bunny-alchemist/static/js/787.815ed969.chunk.js",
     "index.html": "/bunny-alchemist/index.html",
-    "main.331fe97f.css.map": "/bunny-alchemist/static/css/main.331fe97f.css.map",
-    "main.8541ad0c.js.map": "/bunny-alchemist/static/js/main.8541ad0c.js.map",
+    "main.5ae80b33.css.map": "/bunny-alchemist/static/css/main.5ae80b33.css.map",
+    "main.3a33515b.js.map": "/bunny-alchemist/static/js/main.3a33515b.js.map",
     "787.815ed969.chunk.js.map": "/bunny-alchemist/static/js/787.815ed969.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.331fe97f.css",
-    "static/js/main.8541ad0c.js"
+    "static/css/main.5ae80b33.css",
+    "static/js/main.3a33515b.js"
   ]
 }
