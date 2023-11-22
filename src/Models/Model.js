@@ -5,6 +5,7 @@ import { hover } from '@testing-library/user-event/dist/hover';
 
 const GltfModel = ({ modelpath, scale = 1, position = [0, 0, 0]} ) => {
     const ref = useRef();
+    
     const gltf = useLoader(GLTFLoader, modelpath);
     gltf.scene.traverse(function(node) {
         if (node.isMesh) {
@@ -12,9 +13,8 @@ const GltfModel = ({ modelpath, scale = 1, position = [0, 0, 0]} ) => {
         }
     });
     const [hovered, setHover] = useState(false);
+    useFrame((state, delta) => (ref.current.rotation.y += 0.003));
 
-    // TODO: learn what is useFrame
-    // useFrame((state, delta) => (ref.current.rotation.y += 0.01));
 
     return (
         <primitive

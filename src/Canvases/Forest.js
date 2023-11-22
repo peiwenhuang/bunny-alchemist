@@ -23,7 +23,7 @@ function Forest() {
           <World />
           <SimpleBox />
 
-          <OrbitControls />
+          <OrbitControls maxDistance={10}/>
         </Suspense>
     </Canvas>
   );

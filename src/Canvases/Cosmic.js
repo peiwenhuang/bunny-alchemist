@@ -1,22 +1,30 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useRef, useState } from 'react';
 import * as THREE from 'three';
-import { Canvas, useLoader } from '@react-three/fiber';
+import { Canvas, useLoader, useFrame } from '@react-three/fiber';
 import { TextureLoader } from 'three';
-import { OrbitControls, Plane } from "@react-three/drei";
+import { OrbitControls } from "@react-three/drei";
 
 import CosmicSphere from '../Geometry/Cosmic/CosmicSphere';
-
-// TODO:
-
+import BreathingSphere from '../Geometry/Cosmic/BreathingSphere';
 
 function Cosmic() {
     return (
         <Canvas
-        camera={{ fov: 75, position: [8, 6, 8]}}
-        shadows>
+        camera={{ fov: 90, position: [-3, 2, 5]}}
+        shadowMap
+        colorManagement>
             <Suspense fallback={null}>
-                <ambientLight />
+                <fog attach="fog" args={["white", 0, 40]} />
+                <ambientLight intensity={0.1} />
+                <directionalLight
+                    intensity={0.5}
+                    castShadow
+                    shadow-mapSize-height={512}
+                    shadow-mapSize-width={512}
+                />
+                <BreathingSphere />
                 <CosmicSphere />
+                
                 <OrbitControls maxDistance={10} />
             </Suspense>
         </Canvas>
