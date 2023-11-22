@@ -4,7 +4,9 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 import Message from './Message';
 
-const DialogBox = ({ scene, handleSetScene, currentMessage, setCurrentMessage }) => {
+// TODO: close dialogue button
+// scene: cosmic-2 (triggered by App opening dialogue)
+const DialogBox = ({ scene, handleSetScene, handleCloseDialog, currentMessage, setCurrentMessage, dialogOpacity, setBreathing }) => {
     const handleClick = () => {
         if (currentMessage < msgLength - 1) {
             setCurrentMessage(currentMessage + 1);
@@ -46,7 +48,7 @@ const DialogBox = ({ scene, handleSetScene, currentMessage, setCurrentMessage })
                 ]
             }
         ],
-        "cottage": [
+        "cottage-pre-cosmic": [
             {
                 message: "You're finally home, my love.",
                 response: [
@@ -88,7 +90,7 @@ const DialogBox = ({ scene, handleSetScene, currentMessage, setCurrentMessage })
                 ]
             }
         ],
-        "cosmic": [
+        "cosmic-pre-breath": [
             {
                 message: "Welcome to the tranquil cosmos.",
                 response: []
@@ -107,12 +109,55 @@ const DialogBox = ({ scene, handleSetScene, currentMessage, setCurrentMessage })
             },
             {
                 message: "Let's focus on this box in front of you...",
-                response: []
+                response: [
+                    <CloseBtn
+                    handleCloseDialog={() => {
+                        handleCloseDialog();
+                        setBreathing(true);
+                    }}
+                    />
+                ]
             }
         ], 
-        // 16 * 4 = 64s
+        "cosmic-post-breath": [
+            {
+                message: "Great job.",
+                response: [
+                    <EnterBtn
+                    content={"- Go back to cottage -"}
+                    handleSetScene={handleSetScene}
+                    scene={"cottage-pre-garden"}
+                    />
+                ]
+            },
+        ],
+        "cottage-pre-garden": [
+            {
+                message: "Welcome back. Hopefully you are feeling better, even if it is just for a moment.",
+                response: []
+            },
+            {
+                message: "Now, we can choose the base ingredient for our potion. Could you go to my garden and pick one for me?",
+                response: [
+                    <EnterBtn
+                    content={"- Lead me to your garden then! -"}
+                    handleSetScene={handleSetScene}
+                    scene={"garden"}
+                    />
+                ]
+            }
+        ],
         "garden": [
-    
+            {
+                message: "Only plants with a hovering star are ripe for use. Click on them to see their effects.",
+                response: [
+                    <CloseBtn
+                    handleCloseDialog={() => {
+                        handleCloseDialog();
+                    }}
+                    />
+                ]
+            }
         ],
         "desk": [
     
@@ -137,7 +182,8 @@ const DialogBox = ({ scene, handleSetScene, currentMessage, setCurrentMessage })
     }
     
     return (
-        <div className="dialogWindow">
+        <div className="dialogWindow fade-wrapper"
+        style={{opacity: dialogOpacity}}>
             <Message message={scene_messages[scene][currentMessage].message} key={currentMessage} />
             <div className="responses">
                 {button()}
@@ -159,6 +205,16 @@ function EnterBtn ({ scene, handleSetScene, content = "Enter" }) {
     return (
         <div onClick={() => handleSetScene(scene)} className='dialogFooter'>
             {content}
+        </div>
+    );
+}
+
+function CloseBtn({ handleCloseDialog }) {
+    return (
+        <div onClick={() => {
+            handleCloseDialog();
+        }} className='dialogFooter'>
+            <KeyboardArrowDownIcon />
         </div>
     );
 }

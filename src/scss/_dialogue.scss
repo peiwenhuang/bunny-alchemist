@@ -24,3 +24,9 @@
     margin-top: 15px;
     text-align: end;
 }
+
+// fade-out animation (ref: https://codepen.io/Brisingr_1/pen/NWwjWLx)
+.fade-wrapper {
+    transition: opacity ease-out;
+    transition-duration: 0.8s;
+}

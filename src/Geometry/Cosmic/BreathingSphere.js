@@ -2,11 +2,11 @@ import React, { useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Sphere } from "@react-three/drei";
 
-const NUM_BOX_BREATHING = 4;
+const NUM_BOX_BREATHING = 1; ////
 const TIME_PER_BREATH = 4000;
 const TIME_PER_CYCLE = TIME_PER_BREATH * 4;
 
-const BreathingSphere = () => {
+const BreathingSphere = ({ breathing, setBreathing, handleResumeDialog }) => {
     const [animate, setAnimate] = useState("still"); // range: "still", "enlarge", "shrink"
     const ballRef = useRef();
 
@@ -24,9 +24,7 @@ const BreathingSphere = () => {
         }
     });
 
-    // Set receiveShadow on any mesh that should be in shadow,
-    // and castShadow on any mesh that should create a shadow.
-    function animationLoop () {
+    const animationLoop = () => {
         setTimeout(() => {
             console.log("set enlarge"); // test
             setAnimate("enlarge");
@@ -47,11 +45,17 @@ const BreathingSphere = () => {
     const handleScaling = () => {
         animationLoop();
         const breathingInterval = setInterval(animationLoop, TIME_PER_CYCLE);
-
         setTimeout(() => {
             clearInterval(breathingInterval);
         }, TIME_PER_CYCLE * (NUM_BOX_BREATHING - 1));
     };
+    if(breathing) {
+        handleScaling();
+        setBreathing(false);
+        // open dialog post-breathing
+        setTimeout(handleResumeDialog, TIME_PER_CYCLE * NUM_BOX_BREATHING);
+        
+    }
 
     return (
         <Sphere castShadow receiveShadow ref={ballRef} position={[0, 0.5, 0]} onClick={handleScaling}>

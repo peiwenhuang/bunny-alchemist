@@ -7,14 +7,14 @@ import { OrbitControls } from "@react-three/drei";
 import CosmicSphere from '../Geometry/Cosmic/CosmicSphere';
 import BreathingSphere from '../Geometry/Cosmic/BreathingSphere';
 
-function Cosmic() {
+function Cosmic({ breathing, setBreathing, handleSetDialogScene }) {
+
     return (
         <Canvas
         camera={{ fov: 90, position: [-3, 2, 5]}}
-        shadowMap
-        colorManagement>
+        shadows>
             <Suspense fallback={null}>
-                <fog attach="fog" args={["white", 0, 40]} />
+                <fog attach="fog" args={["pink", 0, 50]} />
                 <ambientLight intensity={0.1} />
                 <directionalLight
                     intensity={0.5}
@@ -22,7 +22,9 @@ function Cosmic() {
                     shadow-mapSize-height={512}
                     shadow-mapSize-width={512}
                 />
-                <BreathingSphere />
+                <BreathingSphere
+                breathing={breathing} setBreathing={setBreathing}
+                handleResumeDialog={() => handleSetDialogScene("cosmic-post-breath")} />
                 <CosmicSphere />
                 
                 <OrbitControls maxDistance={10} />

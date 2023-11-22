@@ -3,7 +3,7 @@ import { useLoader, useFrame } from '@react-three/fiber';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { hover } from '@testing-library/user-event/dist/hover';
 
-const GltfModel = ({ modelpath, scale = 1, position = [0, 0, 0]} ) => {
+const GltfModel = ({ modelpath, scale = 1, position = [0, 0, 0], rotate = false} ) => {
     const ref = useRef();
     
     const gltf = useLoader(GLTFLoader, modelpath);
@@ -13,8 +13,12 @@ const GltfModel = ({ modelpath, scale = 1, position = [0, 0, 0]} ) => {
         }
     });
     const [hovered, setHover] = useState(false);
-    useFrame((state, delta) => (ref.current.rotation.y += 0.003));
 
+    useFrame(() => {
+        if(rotate) {
+            ref.current.rotation.y += 0.003;
+        }
+    })
 
     return (
         <primitive

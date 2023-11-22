@@ -7,7 +7,7 @@ import { Html } from "@react-three/drei";
 
 import SimpleBox from '../Geometry/Box';
 
-function Forest() {
+function Garden() {
   return (
     <Canvas
     camera={{ fov: 75, position: [8, 6, 8]}}
@@ -19,9 +19,7 @@ function Forest() {
             shadow-bias={-0.0002}
             shadow-mapSize={[32, 32]}
           />
-          <ambientLight
-            intensity={0.1}
-          />
+          <ambientLight/>
           <World />
           <SimpleBox />
 
@@ -32,7 +30,7 @@ function Forest() {
 }
 
 function World() {
-  const texture = useLoader(TextureLoader, '/assets/forest/forest.jpg');
+  const texture = useLoader(TextureLoader, '/assets/garden/garden.jpg');
   
   return (
    <mesh>
@@ -42,4 +40,4 @@ function World() {
   );
 }
 
-export default Forest;
+export default Garden;
