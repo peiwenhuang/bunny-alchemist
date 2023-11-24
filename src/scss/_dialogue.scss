@@ -10,19 +10,18 @@
     border: solid;
     /* border-image: url("/borderbox_simple.png") 25 / 10px 10px 10px 10px stretch; */
     padding: 15px;
-}
-  
-.dialogTitle {
-    font-size: 1.1rem;
-    font-weight: bold;
-    margin-bottom: 15px;
-}
-  
-.dialogFooter {
-    cursor: pointer;
-    font-size: 0.9rem;
-    margin-top: 15px;
-    text-align: end;
+    font-size: 1.4rem;
+
+    .dialogTitle {
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .dialogFooter {
+        cursor: pointer;
+        margin-top: 15px;
+        text-align: end;
+    }
 }
 
 // fade-out animation (ref: https://codepen.io/Brisingr_1/pen/NWwjWLx)

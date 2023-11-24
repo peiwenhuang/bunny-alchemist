@@ -1,0 +1,11 @@
+.exitBtn {
+    position: fixed;
+    top: 5vh;
+    right: 5vh;
+    color: white;
+    z-index: 100;
+
+    :hover {
+        cursor: pointer;
+    }
+}
