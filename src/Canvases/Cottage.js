@@ -4,14 +4,18 @@ import { Canvas, useLoader } from '@react-three/fiber';
 import { TextureLoader } from 'three';
 import { OrbitControls, Plane } from "@react-three/drei";
 
-import cottagePath from '../assets/cottage/wallpaper-texture-3.jpg';
+import cottagePath from '../assets/cottage/cottage.jpg';
 import AlchemyTable from '../Geometry/Cottage/AlchemyTable';
 import ArmillarySphere from '../Geometry/Cottage/ArmillarySphere';
 import Alchemist from '../Geometry/Cottage/Alchemist';
 
+import World from '../Geometry/World';
+
 // TODO:
 // 1. add walls- DONE
 // 2. adjust camera position
+// 3. adjuts character facing angle & shadow
+// 4. animating character
 
 function Cottage() {
     return (
@@ -19,11 +23,10 @@ function Cottage() {
         camera={{ fov: 75, position: [8, 6, 8]}}
         shadows>
             <Suspense fallback={null}>
-                <Room />
-                <Alchemist />
-                <AlchemyTable position={[-15, 0, -12]}/>
-                <ArmillarySphere position={[-15, 2, 0]}/>
+  
+                <Alchemist position={[4, -15, -10]} />
 
+                <World texturePath={cottagePath} args={[20, 60, 40]} />
                 <OrbitControls maxDistance={10} />
             </Suspense>
         </Canvas>
@@ -39,40 +42,7 @@ function Room() {
     return (
         <>
             <ambientLight />
-            <Plane
-                rotation={[-Math.PI / 2, 0, 0]}
-                position={[0, 0, 0]}
-                args={[40, 40]}
-                receiveShadow
-            >
-                <meshStandardMaterial attach="material" color={"white"} />
-            </Plane>
-            <Plane
-                position={[0, 0, -20]}
-                args={[40, 50]}
-            >
-                <meshStandardMaterial attach="material" map={colorMap} />
-            </Plane>
-            <Plane
-                rotation={[0, Math.PI / 2, 0]}
-                position={[-20, 0, 0]}
-                args={[40, 50]}
-            >
-                <meshStandardMaterial attach="material" map={colorMap} />
-            </Plane>
-            <Plane
-                position={[0, 0, 20]}
-                args={[40, 50]}
-            >
-                <meshStandardMaterial attach="material" map={colorMap} />
-            </Plane>
-            <Plane
-                rotation={[0, Math.PI / 2, 0]}
-                position={[20, 0, 0]}
-                args={[40, 50]}
-            >
-                <meshStandardMaterial attach="material" map={colorMap} />
-            </Plane>
+            
         </>
     );
 }

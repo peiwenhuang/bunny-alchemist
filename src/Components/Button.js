@@ -21,10 +21,10 @@ function NextBtn ({ handleClick, content = "Next" }) {
     );
 }
 
-function EnterBtn ({ scene, handleSetScene, content = "Enter", onClick = null }) {
+function EnterBtn ({ handleSetScene, content = "Enter", onClick = null }) {
     if(onClick === null) {
         onClick = () => {
-            handleSetScene(scene);
+            handleSetScene();
         }
     }
     return (

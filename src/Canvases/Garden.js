@@ -1,10 +1,9 @@
 import React, { useRef, useState, Suspense } from 'react';
-import * as THREE from 'three';
-import { Canvas, extend, useThree, useFrame, useLoader } from '@react-three/fiber';
+import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from "@react-three/drei";
-import { TextureLoader } from 'three/src/loaders/TextureLoader';
 
 import gardenPath from "../assets/garden/garden.jpg";
+import World from '../Geometry/World';
 import SimpleBox from '../Geometry/Box';
 
 function Garden({ handleSetDialogScene }) {
@@ -20,7 +19,7 @@ function Garden({ handleSetDialogScene }) {
             shadow-mapSize={[32, 32]}
           />
           <ambientLight/>
-          <World />
+          <World texturePath={gardenPath} />
           {/* herb 1 */}
           <SimpleBox position={[30, 0, 15]}
           handleSetDialogScene={() => handleSetDialogScene("chamomile")} />
@@ -37,15 +36,6 @@ function Garden({ handleSetDialogScene }) {
   );
 }
 
-function World() {
-  const texture = useLoader(TextureLoader, gardenPath);
-  
-  return (
-   <mesh>
-        <sphereGeometry args={[500, 60, 40]} />
-        <meshBasicMaterial map={texture} side={THREE.BackSide} />
-    </mesh>
-  );
-}
+
 
 export default Garden;

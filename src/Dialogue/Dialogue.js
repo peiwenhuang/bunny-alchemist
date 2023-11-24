@@ -32,10 +32,10 @@ const DialogBox = ({ scene, handleSetScene, handleCloseDialog, currentMessage, s
                     <EnterBtn
                     content={"Skip & Enter"}
                     handleSetScene={() => {
-                        handleSetScene();
+                        playMusic();
+                        handleSetScene("cottage-pre-cosmic");
                         handleClick();
                     }}
-                    scene={"cottage-pre-cosmic"}
                     />
                 ]
             },
@@ -48,8 +48,9 @@ const DialogBox = ({ scene, handleSetScene, handleCloseDialog, currentMessage, s
                 response: [
                     <EnterBtn
                     content={"- Enter -"}
-                    handleSetScene={handleSetScene}
-                    scene={"cottage-pre-cosmic"}
+                    handleSetScene={() => {
+                        handleSetScene("cottage-pre-cosmic");
+                    }}
                     />
                 ]
             }
@@ -90,8 +91,9 @@ const DialogBox = ({ scene, handleSetScene, handleCloseDialog, currentMessage, s
                 response: [
                     <EnterBtn
                     content={"- Start -"}
-                    handleSetScene={handleSetScene}
-                    scene={"cosmic-pre-breath"}
+                    handleSetScene={() => {
+                        handleSetScene("cosmic-pre-breath");
+                    }}
                     />
                 ]
             }
@@ -114,7 +116,7 @@ const DialogBox = ({ scene, handleSetScene, handleCloseDialog, currentMessage, s
                 response: []
             },
             {
-                message: "Let's focus on this box in front of you...",
+                message: "Let's focus on this beautiful ball in front of you...",
                 response: [
                     <CloseBtn
                     handleCloseDialog={() => {
@@ -131,8 +133,9 @@ const DialogBox = ({ scene, handleSetScene, handleCloseDialog, currentMessage, s
                 response: [
                     <EnterBtn
                     content={"- Go back to cottage -"}
-                    handleSetScene={handleSetScene}
-                    scene={"cottage-pre-garden"}
+                    handleSetScene={() => {
+                        handleSetScene("cottage-pre-garden");
+                    }}
                     />
                 ]
             },
@@ -148,8 +151,9 @@ const DialogBox = ({ scene, handleSetScene, handleCloseDialog, currentMessage, s
                 response: [
                     <EnterBtn
                     content={"- Lead me to your garden then! -"}
-                    handleSetScene={handleSetScene}
-                    scene={"garden"}
+                    handleSetScene={() => {
+                        handleSetScene("garden");
+                    }}
                     />
                 ]
             }
@@ -170,11 +174,10 @@ const DialogBox = ({ scene, handleSetScene, handleCloseDialog, currentMessage, s
                 response: [
                     <EnterBtn
                     content={"- Pick Chamomile as Base -"}
-                    handleSetScene={handleSetScene}
-                    onClick={() => {
+                    handleSetScene={() => {
                         completeBase("chamomile");
+                        handleSetScene("cottage-pre-desk-chamomile");
                     }}
-                    scene={"cottage-pre-desk"}
                     />,
                     <CloseBtn
                     content="Cancel"
@@ -189,11 +192,10 @@ const DialogBox = ({ scene, handleSetScene, handleCloseDialog, currentMessage, s
                 response: [
                     <EnterBtn
                     content={"- Pick herb 2 as Base -"}
-                    handleSetScene={handleSetScene}
-                    onClick={() => {
+                    handleSetScene={() => {
                         completeBase("herb 2");
+                        handleSetScene("cottage-pre-desk-herb2");
                     }}
-                    scene={"cottage-pre-desk"}
                     />,
                     <CloseBtn
                     content="Cancel"
@@ -208,11 +210,10 @@ const DialogBox = ({ scene, handleSetScene, handleCloseDialog, currentMessage, s
                 response: [
                     <EnterBtn
                     content={"- Pick herb 3 as Base -"}
-                    handleSetScene={handleSetScene}
-                    onClick={() => {
+                    handleSetScene={() => {
                         completeBase("herb 3");
+                        handleSetScene("cottage-pre-desk-herb3");
                     }}
-                    scene={"cottage-pre-desk"}
                     />,
                     <CloseBtn
                     content="Cancel"
@@ -221,8 +222,64 @@ const DialogBox = ({ scene, handleSetScene, handleCloseDialog, currentMessage, s
                 ]
             }
         ],
+        "cottage-pre-desk-chamomile": [
+            {
+                message: "Welcome back. I see that you've chosen chamomile. Good choice for anxiety relief.",
+                response: [
+                    <NextBtn
+                    content={"Yes, I've been a bit anxious lately. "}
+                    handleClick={handleClick}
+                    />
+                    // TODO: change ingredients!
+                ]
+            },
+            {
+                message: "Now it's the time we pick the core energizer... Let's do a little tarot drawing to match your energy.",
+                response: [
+                    <EnterBtn
+                    content={"Sure, let's pick a card!"}
+                    handleSetScene={() => {
+                        handleSetScene("desk");
+                    }}
+                    />
+                ]
+            }
+        ],
+        "cottage-pre-desk-herb2": [
+            {
+                message: "Welcome back. I see that you've chosen herb 2. Good choice for anxiety relief.",
+                response: [
+                    <NextBtn
+                    content={"Yes, I've been a bit anxious lately. "}
+                    handleClick={handleClick}
+                    />
+                    // TODO: change ingredients!
+                ]
+            }
+        ],
+        "cottage-pre-desk-herb3": [
+            {
+                message: "Welcome back. I see that you've chosen herb 3. Good choice for anxiety relief.",
+                response: [
+                    <NextBtn
+                    content={"Yes, I've been a bit anxious lately. "}
+                    handleClick={handleClick}
+                    />
+                    // TODO: change ingredients!
+                ]
+            }
+        ],
         "desk": [
-    
+            {
+                message: "Three cards lie ahead, reflecting your current state of mind. Pick one to which our magic potion will tailor.",
+                response: [
+                    <NextBtn
+                    content={"Yes, I've been a bit anxious lately. "}
+                    handleClick={handleClick}
+                    />
+                    // TODO: change ingredients!
+                ]
+            }
         ]
     };
     const msgLength = scene_messages[scene].length;
@@ -230,8 +287,10 @@ const DialogBox = ({ scene, handleSetScene, handleCloseDialog, currentMessage, s
 
     const button = () => {
         if(scene_messages[scene][currentMessage].response.length) {
-            return scene_messages[scene][currentMessage].response.map((item) => {
-                return item;
+            return scene_messages[scene][currentMessage].response.map((item, key) => {
+                return <li key={key}>
+                    {item}
+                </li>;
             })
         }
         return <NextBtn
@@ -247,9 +306,9 @@ const DialogBox = ({ scene, handleSetScene, handleCloseDialog, currentMessage, s
         <div className="dialogWindow fade-wrapper"
         style={{opacity: dialogOpacity}}>
             <Message message={scene_messages[scene][currentMessage].message} key={currentMessage} />
-            <div className="responses">
+            <ul className="responses">
                 {button()}
-            </div>
+            </ul>
         </div>
         
     );

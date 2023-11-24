@@ -1,0 +1,6 @@
+@mixin text-shadow {
+    text-shadow: $text-shadow;
+}
+@mixin box-shadow {
+    box-shadow: $box-shadow;
+}
