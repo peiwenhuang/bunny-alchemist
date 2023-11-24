@@ -18,7 +18,7 @@ const  Message  =  ({ message })  =>  {
 //   });
 
   return  (
-    <div  className="DialogMessage">
+    <div  className="dialogMessage">
         {message}
         {/* {transitions.map(({ item, props, key }) => {
             return (

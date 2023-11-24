@@ -1,12 +1,12 @@
 import React, { useRef, useState, Suspense } from 'react';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+
 // designing dialogue boxes (ref: https://codeworkshop.dev/blog/2020-03-01-creating-an-rpg-dialog-effect-with-react-and-react-spring)
 
+import { NextBtn, EnterBtn, CloseBtn } from '../Components/Button';
 import Message from './Message';
 
-// TODO: close dialogue button
-// scene: cosmic-2 (triggered by App opening dialogue)
-const DialogBox = ({ scene, handleSetScene, handleCloseDialog, currentMessage, setCurrentMessage, dialogOpacity, setBreathing }) => {
+const DialogBox = ({ scene, handleSetScene, handleCloseDialog, currentMessage, setCurrentMessage, dialogOpacity, setBreathing, completeBase, playMusic }) => {
     const handleClick = () => {
         if (currentMessage < msgLength - 1) {
             setCurrentMessage(currentMessage + 1);
@@ -23,13 +23,19 @@ const DialogBox = ({ scene, handleSetScene, handleCloseDialog, currentMessage, s
                 response: [
                     <NextBtn
                     content={"Who's this?"}
-                    handleClick={handleClick} 
+                    handleClick={() => {
+                        playMusic();
+                        handleClick();
+                    }} 
                     />
                     ,
                     <EnterBtn
                     content={"Skip & Enter"}
-                    handleSetScene={handleSetScene}
-                    scene={"cottage"}
+                    handleSetScene={() => {
+                        handleSetScene();
+                        handleClick();
+                    }}
+                    scene={"cottage-pre-cosmic"}
                     />
                 ]
             },
@@ -43,7 +49,7 @@ const DialogBox = ({ scene, handleSetScene, handleCloseDialog, currentMessage, s
                     <EnterBtn
                     content={"- Enter -"}
                     handleSetScene={handleSetScene}
-                    scene={"cottage"}
+                    scene={"cottage-pre-cosmic"}
                     />
                 ]
             }
@@ -85,7 +91,7 @@ const DialogBox = ({ scene, handleSetScene, handleCloseDialog, currentMessage, s
                     <EnterBtn
                     content={"- Start -"}
                     handleSetScene={handleSetScene}
-                    scene={"cosmic"}
+                    scene={"cosmic-pre-breath"}
                     />
                 ]
             }
@@ -132,6 +138,7 @@ const DialogBox = ({ scene, handleSetScene, handleCloseDialog, currentMessage, s
             },
         ],
         "cottage-pre-garden": [
+            // TODO: progress bar of base, card, etc
             {
                 message: "Welcome back. Hopefully you are feeling better, even if it is just for a moment.",
                 response: []
@@ -152,9 +159,64 @@ const DialogBox = ({ scene, handleSetScene, handleCloseDialog, currentMessage, s
                 message: "Only plants with a hovering star are ripe for use. Click on them to see their effects.",
                 response: [
                     <CloseBtn
-                    handleCloseDialog={() => {
-                        handleCloseDialog();
+                    handleCloseDialog={handleCloseDialog}
+                    />
+                ]
+            }
+        ],
+        "chamomile": [
+            {
+                message: "Chamomile. It's used for fighting anxiety and depression and acts as a mild sedative which calms nerves and reduces anxiety.",
+                response: [
+                    <EnterBtn
+                    content={"- Pick Chamomile as Base -"}
+                    handleSetScene={handleSetScene}
+                    onClick={() => {
+                        completeBase("chamomile");
                     }}
+                    scene={"cottage-pre-desk"}
+                    />,
+                    <CloseBtn
+                    content="Cancel"
+                    handleCloseDialog={handleCloseDialog}
+                    />
+                ]
+            }
+        ],
+        "herb 2": [
+            {
+                message: "herb 2. It's used for fighting anxiety and depression and acts as a mild sedative which calms nerves and reduces anxiety.",
+                response: [
+                    <EnterBtn
+                    content={"- Pick herb 2 as Base -"}
+                    handleSetScene={handleSetScene}
+                    onClick={() => {
+                        completeBase("herb 2");
+                    }}
+                    scene={"cottage-pre-desk"}
+                    />,
+                    <CloseBtn
+                    content="Cancel"
+                    handleCloseDialog={handleCloseDialog}
+                    />
+                ]
+            }
+        ],
+        "herb 3": [
+            {
+                message: "herb 3. It's used for fighting anxiety and depression and acts as a mild sedative which calms nerves and reduces anxiety.",
+                response: [
+                    <EnterBtn
+                    content={"- Pick herb 3 as Base -"}
+                    handleSetScene={handleSetScene}
+                    onClick={() => {
+                        completeBase("herb 3");
+                    }}
+                    scene={"cottage-pre-desk"}
+                    />,
+                    <CloseBtn
+                    content="Cancel"
+                    handleCloseDialog={handleCloseDialog}
                     />
                 ]
             }
@@ -192,31 +254,5 @@ const DialogBox = ({ scene, handleSetScene, handleCloseDialog, currentMessage, s
         
     );
 };
-
-function NextBtn ({ handleClick, content = "Next" }) {
-    return (
-        <div onClick={handleClick} className="dialogFooter">
-            {content}
-        </div>
-    );
-}
-
-function EnterBtn ({ scene, handleSetScene, content = "Enter" }) {
-    return (
-        <div onClick={() => handleSetScene(scene)} className='dialogFooter'>
-            {content}
-        </div>
-    );
-}
-
-function CloseBtn({ handleCloseDialog }) {
-    return (
-        <div onClick={() => {
-            handleCloseDialog();
-        }} className='dialogFooter'>
-            <KeyboardArrowDownIcon />
-        </div>
-    );
-}
 
 export default DialogBox;

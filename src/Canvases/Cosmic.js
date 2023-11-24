@@ -7,7 +7,7 @@ import { OrbitControls } from "@react-three/drei";
 import CosmicSphere from '../Geometry/Cosmic/CosmicSphere';
 import BreathingSphere from '../Geometry/Cosmic/BreathingSphere';
 
-function Cosmic({ breathing, setBreathing, handleSetDialogScene }) {
+function Cosmic({ breathing, setBreathing, handleSetDialogScene, completeMeditation }) {
 
     return (
         <Canvas
@@ -24,7 +24,8 @@ function Cosmic({ breathing, setBreathing, handleSetDialogScene }) {
                 />
                 <BreathingSphere
                 breathing={breathing} setBreathing={setBreathing}
-                handleResumeDialog={() => handleSetDialogScene("cosmic-post-breath")} />
+                handleResumeDialog={() => handleSetDialogScene("cosmic-post-breath")}
+                completeMeditation={completeMeditation} />
                 <CosmicSphere />
                 
                 <OrbitControls maxDistance={10} />

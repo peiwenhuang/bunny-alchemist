@@ -3,14 +3,14 @@ import * as THREE from 'three';
 import { Canvas, extend, useThree, useFrame, useLoader } from '@react-three/fiber';
 import { OrbitControls } from "@react-three/drei";
 import { TextureLoader } from 'three/src/loaders/TextureLoader';
-import { Html } from "@react-three/drei";
 
+import gardenPath from "../assets/garden/garden.jpg";
 import SimpleBox from '../Geometry/Box';
 
-function Garden() {
+function Garden({ handleSetDialogScene }) {
   return (
     <Canvas
-    camera={{ fov: 75, position: [8, 6, 8]}}
+    camera={{ fov: 75, position: [-8, 6, -8]}}
     shadows>
         <Suspense fallback={null}>
           <directionalLight
@@ -21,7 +21,15 @@ function Garden() {
           />
           <ambientLight/>
           <World />
-          <SimpleBox />
+          {/* herb 1 */}
+          <SimpleBox position={[30, 0, 15]}
+          handleSetDialogScene={() => handleSetDialogScene("chamomile")} />
+          {/* herb 2 */}
+          <SimpleBox position={[40, 0, -15]}
+          handleSetDialogScene={() => handleSetDialogScene("herb 2")} />
+          {/* herb 3 */}
+          <SimpleBox position={[5, 0, 45]}
+          handleSetDialogScene={() => handleSetDialogScene("herb 3")} />
 
           <OrbitControls maxDistance={10}/>
         </Suspense>
@@ -30,7 +38,7 @@ function Garden() {
 }
 
 function World() {
-  const texture = useLoader(TextureLoader, '/assets/garden/garden.jpg');
+  const texture = useLoader(TextureLoader, gardenPath);
   
   return (
    <mesh>

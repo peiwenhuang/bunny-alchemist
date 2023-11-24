@@ -4,6 +4,7 @@ import { Canvas, useLoader } from '@react-three/fiber';
 import { TextureLoader } from 'three';
 import { OrbitControls, Plane } from "@react-three/drei";
 
+import cottagePath from '../assets/cottage/wallpaper-texture-3.jpg';
 import AlchemyTable from '../Geometry/Cottage/AlchemyTable';
 import ArmillarySphere from '../Geometry/Cottage/ArmillarySphere';
 import Alchemist from '../Geometry/Cottage/Alchemist';
@@ -30,7 +31,7 @@ function Cottage() {
 }
 
 function Room() {
-    const colorMap = useLoader(TextureLoader, "assets/cottage/wallpaper-texture-3.jpg");
+    const colorMap = useLoader(TextureLoader, cottagePath);
     colorMap.wrapS = THREE.RepeatWrapping;
     colorMap.wrapT = THREE.RepeatWrapping;
     colorMap.repeat.set(2, 2);

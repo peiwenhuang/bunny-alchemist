@@ -1,6 +1,5 @@
 {
   "name": "bunny-alchemist",
-  "homepage": "https://peiwenhuang.github.io/bunny-alchemist",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -50,7 +49,6 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^6.1.0",
     "sass": "^1.69.5"
   }
 }

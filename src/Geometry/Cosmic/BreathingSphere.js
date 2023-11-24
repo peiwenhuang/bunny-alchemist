@@ -2,11 +2,11 @@ import React, { useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Sphere } from "@react-three/drei";
 
-const NUM_BOX_BREATHING = 1; ////
+const NUM_BOX_BREATHING = 4;
 const TIME_PER_BREATH = 4000;
 const TIME_PER_CYCLE = TIME_PER_BREATH * 4;
 
-const BreathingSphere = ({ breathing, setBreathing, handleResumeDialog }) => {
+const BreathingSphere = ({ breathing, setBreathing, handleResumeDialog, completeMeditation }) => {
     const [animate, setAnimate] = useState("still"); // range: "still", "enlarge", "shrink"
     const ballRef = useRef();
 
@@ -52,9 +52,9 @@ const BreathingSphere = ({ breathing, setBreathing, handleResumeDialog }) => {
     if(breathing) {
         handleScaling();
         setBreathing(false);
+        completeMeditation();
         // open dialog post-breathing
         setTimeout(handleResumeDialog, TIME_PER_CYCLE * NUM_BOX_BREATHING);
-        
     }
 
     return (

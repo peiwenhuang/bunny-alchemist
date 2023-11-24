@@ -5,6 +5,7 @@ import { OrbitControls } from "@react-three/drei";
 import { TextureLoader } from 'three/src/loaders/TextureLoader';
 import { Html } from "@react-three/drei";
 
+import forestPath from '../assets/forest/forest.jpg';
 import SimpleBox from '../Geometry/Box';
 
 function Forest() {
@@ -20,7 +21,6 @@ function Forest() {
             shadow-mapSize={[32, 32]}
           />
           <ambientLight
-            intensity={0.1}
           />
           <World />
           <SimpleBox />
@@ -32,7 +32,8 @@ function Forest() {
 }
 
 function World() {
-  const texture = useLoader(TextureLoader, '/assets/forest/forest.jpg');
+  const texture = useLoader(TextureLoader, forestPath);
+  
   
   return (
    <mesh>
