@@ -1,31 +1,100 @@
-.dialogWindow {
+.dialog-wrapper {
     position: fixed;
-    top: 80vh;
+    top: 68vh;
     left: 50vw;
-    /* to center the dialogue window */
-    transform: translate(-50%, -50%);
-    width: 60vw;
-    z-index: 100;
-    background-color: #e2b27e;
-    border: solid;
-    /* border-image: url("/borderbox_simple.png") 25 / 10px 10px 10px 10px stretch; */
-    padding: 15px;
+    transform: translateX(-50%); /* to center the dialogue window */
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
     font-size: 1.4rem;
+    line-height: 1.4;
+}
+
+.dialogWindow {
+    position: relative;
+    top: 0;
+    width: 60vw;
+    height: 15vh;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    @include text-box;
+    @include p-16;
+
+    > :first-child {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 48px;
+    }
+
+    .img-wrapper {
+        position: relative;
+        width: 24%;
+        right: 0;
+        top: 0;
+
+        img {
+            position: absolute;
+            
+        }
+        // RWD issue :,)
+        #Leymus {
+            height: 32vh;
+            right: 0;
+            top: -14vh;
+        }
+        #Galaxy {
+            width: 140%;
+            right: -4vw;
+            top: -4vh;
+            transform: rotate(-15deg);
+        }
+    }
     
-    .dialogTitle {
-        font-weight: bold;
-        margin-bottom: 15px;
+    
+    .speaker {
+        color: $gold;
+        margin-bottom: .1em;
     }
 
-    .dialogFooter {
-        cursor: pointer;
-        margin-top: 15px;
-        text-align: end;
+    .dialogMessage {
+        max-width: 74%;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        color: white;
+        
     }
 }
 
-// fade-out animation (ref: https://codepen.io/Brisingr_1/pen/NWwjWLx)
-.fade-wrapper {
-    transition: opacity ease-out;
-    transition-duration: 0.8s;
+.dialogFooter {
+    width: 40vw;
+    @include p-16;
+    color: white;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    li {
+        min-width: 48%;
+        @include text-response;
+
+        .primary {
+            background-color: $purple;
+        }
+
+    }
+    li:hover {
+        background-color: $grey;
+        transition: .5s;
+
+        .primary {
+            background-color: $purple-darker;
+        }
+    }
+
+    @include hover-pointer;
 }
+

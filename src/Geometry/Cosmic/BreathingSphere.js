@@ -56,11 +56,11 @@ const BreathingSphere = ({ breathing, setBreathing, handleResumeDialog, complete
         setTimeout(() => {
             handleResumeDialog();
             completeMeditation();
-        }, TIME_PER_CYCLE * NUM_BOX_BREATHING);
+        }, TIME_PER_CYCLE * (NUM_BOX_BREATHING));
     }
 
     return (
-        <Sphere castShadow receiveShadow ref={ballRef} position={[0, 0.5, 0]} onClick={handleScaling}>
+        <Sphere castShadow receiveShadow ref={ballRef} scale={1.8} position={[0, 0.5, 0]} onClick={handleScaling}>
             <meshStandardMaterial attach="material" color="white" />
         </Sphere>
     );

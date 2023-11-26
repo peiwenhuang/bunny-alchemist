@@ -6,6 +6,7 @@ import { TextureLoader } from 'three/src/loaders/TextureLoader';
 import { Html } from "@react-three/drei";
 
 import forestPath from '../assets/forest/forest.jpg';
+import World from '../Geometry/World';
 import SimpleBox from '../Geometry/Box';
 
 function Forest() {
@@ -22,24 +23,12 @@ function Forest() {
           />
           <ambientLight
           />
-          <World />
+          <World texturePath={forestPath}/>
           <SimpleBox />
 
           <OrbitControls maxDistance={10}/>
         </Suspense>
     </Canvas>
-  );
-}
-
-function World() {
-  const texture = useLoader(TextureLoader, forestPath);
-  
-  
-  return (
-   <mesh>
-        <sphereGeometry args={[500, 60, 40]} />
-        <meshBasicMaterial map={texture} side={THREE.BackSide} />
-    </mesh>
   );
 }
 

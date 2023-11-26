@@ -1,4 +1,3 @@
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import lotusPath from "../assets/cosmic/lotus.png";
 
 /* 
@@ -15,36 +14,37 @@ function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-const Progress = ({ ingredients, activeIdx }) => {
+const Progress = ({ ingredients, activeIdx, opacity }) => {
     const ingredientArr = [
         {
             title: "Meditation",
-            status: ingredients.meditation === "incomplete" ? "Incomplete" : "Complete",
-            name: ingredients.meditation === "incomplete" ? "Incomplete" : "Complete",
+            status: ingredients.meditation === "Incomplete" ? "Incomplete" : "Complete",
+            name: ingredients.meditation === "Incomplete" ? "Incomplete" : "Complete",
             active: activeIdx === 0 ? "active" : ""
         },
         {
             title: "Base",
-            status: ingredients.base === "incomplete" ? "Incomplete" : "Complete",
+            status: ingredients.base === "Incomplete" ? "Incomplete" : "Complete",
             name: capitalizeFirstLetter(ingredients.base),
             active: activeIdx === 1 ? "active" : ""
         },
         {
             title: "Energizer",
-            status: ingredients.energizer === "incomplete" ? "Incomplete" : "Complete",
+            status: ingredients.energizer === "Incomplete" ? "Incomplete" : "Complete",
             name: capitalizeFirstLetter(ingredients.energizer),
             active: activeIdx === 2 ? "active" : ""
         },
         {
             title: "Potion",
-            status: ingredients.potion === "incomplete" ? "Incomplete" : "Complete",
-            name: ingredients.potion === "incomplete" ? "Incomplete" : "Complete",
+            status: ingredients.potion === "Incomplete" ? "Incomplete" : "Complete",
+            name: ingredients.potion === "Incomplete" ? "Incomplete" : "Complete",
             active: activeIdx === 3 ? "active" : ""
         },
     ];
 
     return (
-        <ul className='progressBar'>
+        <ul className='progressBar fade-wrapper'
+        style={{opacity: opacity}}>
             {
                 ingredientArr.map((item, key) => {
                     return (

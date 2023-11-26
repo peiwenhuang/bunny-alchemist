@@ -1,32 +1,16 @@
-import  React,  {  useMemo  }  from  "react";
-import  {  animated,  useTransition  }  from  "react-spring";
+import  React  from  "react";
+import { TypeAnimation } from 'react-type-animation';
 
-const  Message  =  ({ message })  =>  {
-//   const  items  =  useMemo(
-//     ()  =>
-//       message.split("").map((letter,  index)  =>  ({
-//         item:  letter,
-//         key:  `${letter}${index}`
-//       })),
-//     [message]
-//   );
-
-//   const  transitions  =  useTransition(items,  item  =>  item.key,  {
-//     trail:  35,
-//     from:  { display:  "none"  },
-//     enter:  { display:  ""  }
-//   });
-
-  return  (
+const  Message  =  ({ message, speaker })  =>  {
+  return (
     <div  className="dialogMessage">
-        {message}
-        {/* {transitions.map(({ item, props, key }) => {
-            return (
-            <animated.span  key={key} style={props}>
-                {item.item}
-            </animated.span>
-            );
-        })} */}
+      <h3 className="speaker">{speaker}</h3>
+      <TypeAnimation
+        sequence={message}
+        speed={80}
+        repeat={0}
+        cursor={false}
+      />
     </div>
   );
 };

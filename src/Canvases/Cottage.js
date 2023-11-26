@@ -5,45 +5,24 @@ import { TextureLoader } from 'three';
 import { OrbitControls, Plane } from "@react-three/drei";
 
 import cottagePath from '../assets/cottage/cottage.jpg';
-import AlchemyTable from '../Geometry/Cottage/AlchemyTable';
-import ArmillarySphere from '../Geometry/Cottage/ArmillarySphere';
-import Alchemist from '../Geometry/Cottage/Alchemist';
+import { Griffon } from '../Geometry/Cottage/Griffon';
 
 import World from '../Geometry/World';
-
-// TODO:
-// 1. add walls- DONE
-// 2. adjust camera position
-// 3. adjuts character facing angle & shadow
-// 4. animating character
 
 function Cottage() {
     return (
         <Canvas
-        camera={{ fov: 75, position: [8, 6, 8]}}
+        camera={{ fov: 60, position: [40, 0, 30] }}
         shadows>
             <Suspense fallback={null}>
-  
-                <Alchemist position={[4, -15, -10]} />
+                <Griffon position={[10, -55, 5]} scale={240} rotation={[THREE.MathUtils.degToRad(-15), THREE.MathUtils.degToRad(60), THREE.MathUtils.degToRad(10)]}/>
+                <World texturePath={cottagePath} args={[100, 60, 40]} position={[0, -60, 0]} />
+                <OrbitControls target={[2, -40, 0]} />
 
-                <World texturePath={cottagePath} args={[20, 60, 40]} />
-                <OrbitControls maxDistance={10} />
+                <axesHelper size={20} />
+                <gridHelper size={20} />
             </Suspense>
         </Canvas>
-    );
-}
-
-function Room() {
-    const colorMap = useLoader(TextureLoader, cottagePath);
-    colorMap.wrapS = THREE.RepeatWrapping;
-    colorMap.wrapT = THREE.RepeatWrapping;
-    colorMap.repeat.set(2, 2);
-
-    return (
-        <>
-            <ambientLight />
-            
-        </>
     );
 }
 

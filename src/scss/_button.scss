@@ -1,4 +1,5 @@
 .exitBtn {
+    @include drop-shadow(black);
     position: fixed;
     top: 5vh;
     right: 5vh;
@@ -8,4 +9,10 @@
     :hover {
         cursor: pointer;
     }
+}
+
+.next-arrow {
+    @include br-16;
+    @include drop-shadow($grey-darker, 2px, 4px);
+    padding: 4px;
 }

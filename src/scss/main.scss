@@ -10,8 +10,20 @@
     height: 100vh;
     outline: none;
     border: none;
+    background-color: black;
     // TODO: change font family
-    font-family: Arial, Helvetica, sans-serif; 
+    font-family: Optima, Segoe, "Segoe UI", Candara, Calibri, Arial, sans-serif;
+}
+
+#curtain {
+    width: 100vw;
+    height: 100vh;
+}
+
+// fade-out animation (ref: https://codepen.io/Brisingr_1/pen/NWwjWLx)
+.fade-wrapper {
+    transition: opacity ease-out;
+    transition-duration: 0.8s;
 }
 
 @import "variables";
@@ -19,3 +31,4 @@
 @import "dialogue";
 @import "button";
 @import "progress";
+@import "desk";

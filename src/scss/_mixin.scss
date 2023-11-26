@@ -1,6 +1,51 @@
+@mixin p-16 {
+    padding: 16px;
+}
+
+@mixin br-16 {
+    border-radius: 16px;
+}
+
+@mixin hover-pointer {
+    :hover {
+        cursor: pointer;
+    }
+}
+
 @mixin text-shadow {
     text-shadow: $text-shadow;
 }
+
 @mixin box-shadow {
     box-shadow: $box-shadow;
+}
+@mixin drop-shadow($color, $offset-y: 2px, $spread: 4px) {
+    filter: drop-shadow($color 0px $offset-y $spread);
+}
+
+@mixin text-box {
+    background-color: $grey;
+    border: $gold 3px solid;
+    border-radius: 100px;
+    @include drop-shadow($gold-darker, 0.2px, 0.8px);
+}
+
+@mixin text-response {
+    @include br-16;
+
+    div {
+        @include text-box;
+        @include p-16;
+        @include br-16;
+        text-align: center;
+    }
+
+    :hover {
+        background-color: $grey;
+        transition: .5s;
+
+        .primary {
+            background-color: $purple-darker;
+        }
+    }
 }
