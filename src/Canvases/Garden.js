@@ -30,7 +30,7 @@ function Garden({ handleSetDialogScene }) {
           <SimpleBox position={[5, 0, 45]}
           handleSetDialogScene={() => handleSetDialogScene("herb 3")} />
 
-          <OrbitControls maxDistance={10}/>
+          <OrbitControls maxDistance={10} autoRotate autoRotateSpeed={0.5}/>
         </Suspense>
     </Canvas>
   );

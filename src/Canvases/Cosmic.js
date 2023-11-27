@@ -14,13 +14,14 @@ function Cosmic({ breathing, setBreathing, handleSetDialogScene, completeMeditat
         camera={{ fov: 90, position: [-3, 2, 5]}}
         shadows>
             <Suspense fallback={null}>
-                <fog attach="fog" args={["pink", 0, 50]} />
-                <ambientLight intensity={0.1} />
+                <fog attach="fog" args={["pink", 6, 30]} />
+                <ambientLight intensity={0.8} />
                 <directionalLight
-                    intensity={0.5}
-                    castShadow
-                    shadow-mapSize-height={512}
-                    shadow-mapSize-width={512}
+                intensity={0.8}
+                castShadow
+                />
+                <pointLight
+                castShadow
                 />
                 <BreathingSphere
                 breathing={breathing} setBreathing={setBreathing}

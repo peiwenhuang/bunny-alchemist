@@ -5,12 +5,16 @@ const  Message  =  ({ message, speaker })  =>  {
   return (
     <div  className="dialogMessage">
       <h3 className="speaker">{speaker}</h3>
-      <TypeAnimation
-        sequence={message}
-        speed={80}
+      <p>
+        {message}
+      </p>
+      {/* <TypeAnimation
+        sequence={[message]}
+        speed={90}
         repeat={0}
         cursor={false}
-      />
+        omitDeletionAnimation={true}
+      /> */}
     </div>
   );
 };

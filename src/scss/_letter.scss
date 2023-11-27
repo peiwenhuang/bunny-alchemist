@@ -1,0 +1,18 @@
+.letter-wrapper {
+    position: fixed;
+    top: 40vh;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    // background-color: $grey;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+        position: relative;
+        max-width: 70%;
+        transform: rotate(15deg);
+        @include drop-shadow($grey, 8px, 16px);
+    }
+}

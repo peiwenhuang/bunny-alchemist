@@ -13,7 +13,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        
+        transition: ease-in;
         
         .progressIcon-wrapper {
             @include box-shadow;
@@ -26,7 +26,7 @@
 
             border-radius: 100px;
             // TODO: change color
-            border: 3px solid yellow;
+            border: 3px solid $gold;
             background-color: $grey;
 
             img {
@@ -54,8 +54,9 @@
         left: -2em;
         width: 2em;
         height: .2em;
-        background-color: yellow;
+        background-color: $gold;
         z-index: -1;
+        transition: .8s;
     }
 
     li:first-child::before {
@@ -68,7 +69,14 @@
         }
     }
     .active ~ li::before {
-        background-color: yellow;
+        background-color: $gold;
         opacity: 40%;
+    }
+
+    #progress-1 {
+        width: 4.5em;
+    }
+    #progress-2 {
+        width: 2em;
     }
 }

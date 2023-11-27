@@ -1,4 +1,9 @@
-import lotusPath from "../assets/cosmic/lotus.png";
+import lotusPath from "../assets/cosmic/lotus-1.png";
+import camomilePath from "../assets/garden/camomile.png";
+import theFoolPath from '../assets/desk/the-fool-tarot-card.jpg';
+import strengthPath from '../assets/desk/strength-tarot-card.jpg';
+import theMagicianPath from '../assets/desk/the-magician-tarot-card.jpg';
+import purplePotionPath from "../assets/cottage/purple-potion.png";
 
 /* 
 meditation: complete <-> incomplete
@@ -8,7 +13,7 @@ potion: complete <-> incomplete
 */
 
 
-const imgPaths = [lotusPath, lotusPath, lotusPath, lotusPath];
+const imgPaths = [lotusPath, camomilePath, theFoolPath, purplePotionPath];
 
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -50,7 +55,7 @@ const Progress = ({ ingredients, activeIdx, opacity }) => {
                     return (
                         <li key={key} className={`${item.active} fade-wrapper`}>
                             <div className='progressIcon-wrapper'>
-                                {item.status === "Complete" ? <img src={imgPaths[key]} /> : null}
+                                {item.status === "Complete" ? <img src={imgPaths[key]} id={`progress-${key}`} /> : null}
                             </div>
                             <h3>{item.title}</h3>
                             <p>{item.name}</p>

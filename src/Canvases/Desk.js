@@ -1,12 +1,9 @@
 import React, { useState, Suspense } from 'react';
 import * as THREE from 'three';
 import { Canvas, useLoader } from '@react-three/fiber';
-import { TextureLoader } from 'three';
 import { OrbitControls } from "@react-three/drei";
-import { PlaneGeometry } from 'three';
 
 import Table from '../Geometry/Desk/Table';
-import Tarots from '../Geometry/Desk/Tarot';
 import { TheFool, Strength, TheMagician } from '../Geometry/Desk/Card';
 
 // TODO: randomize cards
@@ -38,10 +35,10 @@ function Desk({ handleCardFlip }) {
                 handleCardFlip={() => handleDeskFlip("desk-the-magician", "The Magician")}
                 />
 
-                <axesHelper size={10} />
-                <gridHelper />
+                {/* <axesHelper size={10} />
+                <gridHelper /> */}
 
-                <OrbitControls enabled={true} />
+                <OrbitControls enabled={false} />
             </Suspense>
         </Canvas>
     );

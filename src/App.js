@@ -8,21 +8,23 @@ import Cosmic from './Canvases/Cosmic';
 import Garden from './Canvases/Garden';
 import Desk from './Canvases/Desk';
 import DialogBox from './Dialogue/Dialogue';
+import Letter from './Dialogue/Letter';
 
 import music from './assets/forest/forest-bgm.mp3';
 
 // TODO: scene transition + loading screen svg animation
-// TODO: figure out pipeline for potion completion
+// TODO: progress bar transition
 // TODO: garden herb onclick enlarge
 // TODO: cosmic add "breath in/out" text
 // TODO: add timeout before starting enlarging
 
 // TODO: base tailored message for anxiety
 // TODO: model env (desk)
-// TODO: play music
 // TODO: set breathing times to 4
 // TODO: text box width
 // TODO: dialog box with character / plant img
+// TODO: breathing lotus
+// TODO: credit page
 
 /* scenes: 
 "forest", "cottage-pre-cosmic", "cosmic-pre-breath", "cosmic-post-breath", 
@@ -50,6 +52,8 @@ function App() {
   const [ingredients, setIngredients] = useState(INIT_INGREDIENTS);
   const [active, setActive] = useState(-1);
   const [breathing, setBreathing] = useState(false);
+  const [makePotion, setMakePotion] = useState(false);
+  const [letterPath, setLetterPath] = useState(null);
   const [bgm] = useState(new Audio(music));
   bgm.loop = true;
 
@@ -77,7 +81,10 @@ function App() {
     handleSetScene("forest");
     handleSetDialogScene("forest");
     setBreathing(false);
+    setProgressOpacity(0);
     setActive(-1);
+    setMakePotion(false);
+    setLetterPath(null);
     setIngredients(INIT_INGREDIENTS);
   }
   const handleSetScene = (newScene) => {
@@ -137,6 +144,12 @@ function App() {
     });
     setActive(active + 1);
   }
+  const handleLetterPath = (path) => {
+    setLetterPath(path);
+  }
+
+  useEffect(() => {
+  }, [letterPath]);
 
   const exitIcon = () => {
     if(scene !== "forest") {
@@ -153,7 +166,11 @@ function App() {
       return <Forest />
     }
     if(scene.includes("cottage")) {
-      return <Cottage />
+      return <Cottage
+      makePotion={makePotion} setMakePotion={setMakePotion}
+      handleSetDialogScene={handleSetDialogScene}
+      completePotion={completePotion}
+      />
     }
     if(scene.includes("cosmic")) {
       return <Cosmic
@@ -186,16 +203,23 @@ function App() {
       />
       {exitIcon()}
         {display()}
+      <Letter
+      letterPath={letterPath}
+      />
       <DialogBox
       scene={dialogScene}
       handleSetScene={handleSetScene}
+      handleSetDialogScene={handleSetDialogScene}
       handleCloseDialog={handleCloseDialog}
       currentMessage={currentMessage}
       setCurrentMessage={setCurrentMessage}
       dialogOpacity={dialogOpacity}
       setBreathing={setBreathing}
+      setMakePotion={setMakePotion}
       completeBase={completeBase}
+      handleLetterPath={handleLetterPath}
       playMusic={play}
+      reset={reset}
       />
     </div>
   );

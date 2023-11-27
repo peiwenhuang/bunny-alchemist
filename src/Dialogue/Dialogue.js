@@ -8,8 +8,9 @@ import Message from './Message';
 
 import character from "../assets/griffon.png";
 import galaxy from "../assets/cosmic/galaxy.png";
+import letter1 from "../assets/love-letter-1.png";
 
-const DialogBox = ({ scene, handleSetScene, handleCloseDialog, currentMessage, setCurrentMessage, dialogOpacity, setBreathing, completeBase, playMusic }) => {
+const DialogBox = ({ scene, handleSetScene, handleSetDialogScene, handleCloseDialog, currentMessage, setCurrentMessage, dialogOpacity, setBreathing, setMakePotion, completeBase, handleLetterPath, playMusic, reset }) => {
     const handleClick = () => {
         if (currentMessage < msgLength - 1) {
             setCurrentMessage(currentMessage + 1);
@@ -29,7 +30,7 @@ const DialogBox = ({ scene, handleSetScene, handleCloseDialog, currentMessage, s
                     content={"Who's this?"}
                     primary={true}
                     handleClick={() => {
-                        // playMusic();
+                        playMusic();
                         handleClick();
                     }} 
                     />
@@ -37,7 +38,7 @@ const DialogBox = ({ scene, handleSetScene, handleCloseDialog, currentMessage, s
                     <EnterBtn
                     content={"Skip & Enter"}
                     handleSetScene={() => {
-                        // playMusic();
+                        playMusic();
                         handleSetScene("cottage-pre-cosmic");
                         setTimeout(() => handleClick(), 800);
                     }}
@@ -196,6 +197,8 @@ const DialogBox = ({ scene, handleSetScene, handleCloseDialog, currentMessage, s
         "garden": [
             {
                 message: "Only plants with a hovering star are ripe for use. Click on them to see their effects.",
+                speaker: "Leymus",
+                img: character,
                 response: [
                     <CloseBtn
                     content={"- OK -"}
@@ -206,7 +209,9 @@ const DialogBox = ({ scene, handleSetScene, handleCloseDialog, currentMessage, s
         ],
         "chamomile": [
             {
-                message: "Chamomile. It's used for fighting anxiety and depression and acts as a mild sedative which calms nerves and reduces anxiety.",
+                message: "It's used for fighting anxiety and depression and acts as a mild sedative which calms nerves and reduces anxiety.",
+                speaker: "Chamomile",
+                img: character,
                 response: [
                     <EnterBtn
                     primary={true}
@@ -225,7 +230,9 @@ const DialogBox = ({ scene, handleSetScene, handleCloseDialog, currentMessage, s
         ],
         "herb 2": [
             {
-                message: "herb 2. It's used for fighting anxiety and depression and acts as a mild sedative which calms nerves and reduces anxiety.",
+                message: "It's used for fighting anxiety and depression and acts as a mild sedative which calms nerves and reduces anxiety.",
+                speaker: "Herb 2",
+                img: character,
                 response: [
                     <EnterBtn
                     primary={true}
@@ -244,7 +251,9 @@ const DialogBox = ({ scene, handleSetScene, handleCloseDialog, currentMessage, s
         ],
         "herb 3": [
             {
-                message: "herb 3. It's used for fighting anxiety and depression and acts as a mild sedative which calms nerves and reduces anxiety.",
+                message: "It's used for fighting anxiety and depression and acts as a mild sedative which calms nerves and reduces anxiety.",
+                speaker: "Herb 3",
+                img: character,
                 response: [
                     <EnterBtn
                     primary={true}
@@ -264,6 +273,8 @@ const DialogBox = ({ scene, handleSetScene, handleCloseDialog, currentMessage, s
         "cottage-pre-desk-chamomile": [
             {
                 message: "Welcome back. I see that you've chosen chamomile. Good choice for anxiety relief.",
+                speaker: "Leymus",
+                img: character,
                 response: [
                     <NextBtn
                     content={"Yes, I've been a bit anxious lately. "}
@@ -274,6 +285,8 @@ const DialogBox = ({ scene, handleSetScene, handleCloseDialog, currentMessage, s
             },
             {
                 message: "Now it's time to pick our core energizer... Why don't we do a little tarot drawing at my alchemy table to match your energy.",
+                speaker: "Leymus",
+                img: character,
                 response: [
                     <EnterBtn
                     primary={true}
@@ -288,18 +301,36 @@ const DialogBox = ({ scene, handleSetScene, handleCloseDialog, currentMessage, s
         "cottage-pre-desk-herb2": [
             {
                 message: "Welcome back. I see that you've chosen herb 2. Good choice for anxiety relief.",
+                speaker: "Leymus",
+                img: character,
                 response: [
                     <NextBtn
                     content={"Yes, I've been a bit anxious lately. "}
                     handleClick={handleClick}
                     />
                     // TODO: change ingredients!
+                ]
+            },
+            {
+                message: "Now it's time to pick our core energizer... Why don't we do a little tarot drawing at my alchemy table to match your energy.",
+                speaker: "Leymus",
+                img: character,
+                response: [
+                    <EnterBtn
+                    primary={true}
+                    content={"- Sure, let's pick a card! -"}
+                    handleSetScene={() => {
+                        handleSetScene("desk");
+                    }}
+                    />
                 ]
             }
         ],
         "cottage-pre-desk-herb3": [
             {
                 message: "Welcome back. I see that you've chosen herb 3. Good choice for anxiety relief.",
+                speaker: "Leymus",
+                img: character,
                 response: [
                     <NextBtn
                     content={"Yes, I've been a bit anxious lately. "}
@@ -307,11 +338,27 @@ const DialogBox = ({ scene, handleSetScene, handleCloseDialog, currentMessage, s
                     />
                     // TODO: change ingredients!
                 ]
+            },
+            {
+                message: "Now it's time to pick our core energizer... Why don't we do a little tarot drawing at my alchemy table to match your energy.",
+                speaker: "Leymus",
+                img: character,
+                response: [
+                    <EnterBtn
+                    primary={true}
+                    content={"- Sure, let's pick a card! -"}
+                    handleSetScene={() => {
+                        handleSetScene("desk");
+                    }}
+                    />
+                ]
             }
         ],
         "desk": [
             {
                 message: "Three cards lie ahead, reflecting your current state of mind. Pick one to which our magic potion will tailor.",
+                speaker: "Leymus",
+                img: character,
                 response: [
                     <CloseBtn
                     content={"- OK -"}
@@ -323,10 +370,14 @@ const DialogBox = ({ scene, handleSetScene, handleCloseDialog, currentMessage, s
         "desk-the-fool": [
             {
                 message: "Hmm. The Fool. Beginnings, innocence, spontaneity, a free spirit.",
+                speaker: "Leymus",
+                img: character,
                 response: []
             },
             {
                 message: "You are on the verge of an unexpected and exciting new adventure in your daily life. This may require you to take a blind leap of faith.",
+                speaker: "Leymus",
+                img: character,
                 response: [
                     <EnterBtn
                     primary={true}
@@ -341,10 +392,14 @@ const DialogBox = ({ scene, handleSetScene, handleCloseDialog, currentMessage, s
         "desk-strength": [
             {
                 message: "Hmm. Strength. Courage, compassion, a triumphant conclusion.",
+                speaker: "Leymus",
+                img: character,
                 response: []
             },
             {
                 message: "You are persevering and can achieve anything you want. You're committed to what you must do and go about it very well and maturely. Keep behaving this way, and you will succeed in anything you want.",
+                speaker: "Leymus",
+                img: character,
                 response: [
                     <EnterBtn
                     primary={true}
@@ -359,10 +414,14 @@ const DialogBox = ({ scene, handleSetScene, handleCloseDialog, currentMessage, s
         "desk-the-magician": [
             {
                 message: "Hmm. The Magician. Willpower, creation, inner strength.",
+                speaker: "Leymus",
+                img: character,
                 response: []
             },
             {
                 message: "You have the drive and power to make your dreams happen. The outer world will follow if you create your inner world. Yet, you have to focus and concentrate on achieving your dream.",
+                speaker: "Leymus",
+                img: character,
                 response: [
                     <EnterBtn
                     primary={true}
@@ -377,31 +436,118 @@ const DialogBox = ({ scene, handleSetScene, handleCloseDialog, currentMessage, s
         "cottage-the-fool": [
             {
                 message: "Wow. The fool. I've always admired their free spirit.",
+                speaker: "Leymus",
+                img: character,
                 response: []
             },
             {
                 message: "Now that we've gathered all the ingredients, let me perform a little magic for you...",
-                response: []
+                speaker: "Leymus",
+                img: character,
+                response: [
+                    <CloseBtn
+                    handleCloseDialog={() => {
+                        handleCloseDialog();
+                        setMakePotion(true);
+                    }}
+                    content={"- OK -"}
+                    />
+                ]
             }
         ],
         "cottage-strength": [
             {
                 message: "Wow. Strength. I've always admired their determination.",
+                speaker: "Leymus",
+                img: character,
                 response: []
             },
             {
                 message: "Now that we've gathered all the ingredients, let me perform a little magic for you...",
-                response: []
+                speaker: "Leymus",
+                img: character,
+                response: [
+                    <CloseBtn
+                    handleCloseDialog={() => {
+                        handleCloseDialog();
+                        setMakePotion(true);
+                    }}
+                    content={"- OK -"}
+                    />
+                ]
             }
         ],
         "cottage-the-magician": [
             {
                 message: "Wow. The magician. I've always admired their creativity.",
+                speaker: "Leymus",
+                img: character,
                 response: []
             },
             {
                 message: "Now that we've gathered all the ingredients, let me perform a little magic for you...",
-                response: []
+                speaker: "Leymus",
+                img: character,
+                response: [
+                    <CloseBtn
+                    handleCloseDialog={() => {
+                        handleCloseDialog();
+                        setMakePotion(true);
+                    }}
+                    content={"- OK -"}
+                    />
+                ]
+            }
+        ],
+        "cottage-purple-potion": [
+            {
+                message: "Voila! Here's your personalized potion, take a look at the note I have made just for you...",
+                speaker: "Leymus",
+                img: character,
+                response: [
+                    <NextBtn
+                    primary={true}
+                    content={"- Take A Look -"}
+                    handleClick={() => {
+                        handleLetterPath(letter1);
+                        handleSetDialogScene("cottage-letter-1");
+                    }}
+                    />
+                ]
+            }
+        ],
+        "cottage-yellow-potion": [
+
+        ],
+        "cottage-red-potion": [
+
+        ],
+        "cottage-letter-1": [
+            {
+                message: "I am free to love, to know peace, and to bring joy.",
+                response: [
+                    <EnterBtn
+                    content={"- Go Back -"}
+                    handleSetScene={() => {
+                        handleSetDialogScene("cottage-finale");
+                    }}
+                    />
+                ]
+            }
+        ],
+        "cottage-finale": [
+            {
+                message: "Thank you for allowing me to make you this beautiful potion. Is there anything I can do?",
+                speaker: "Leymus",
+                img: character,
+                response: [
+                    <NextBtn
+                    content={"- Remake Potion -"}
+                    handleClick={() => {
+                        reset();
+                    }}
+                    />
+                ]
             }
         ]
     };
