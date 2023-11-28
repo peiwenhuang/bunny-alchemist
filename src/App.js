@@ -11,6 +11,7 @@ import DialogBox from './Dialogue/Dialogue';
 import Letter from './Dialogue/Letter';
 
 import music from './assets/forest/forest-bgm.mp3';
+import { click } from '@testing-library/user-event/dist/click';
 
 // TODO: scene transition + loading screen svg animation
 // TODO: progress bar transition
@@ -22,7 +23,6 @@ import music from './assets/forest/forest-bgm.mp3';
 // TODO: model env (desk)
 // TODO: set breathing times to 4
 // TODO: text box width
-// TODO: dialog box with character / plant img
 // TODO: breathing lotus
 // TODO: credit page
 
@@ -52,6 +52,7 @@ function App() {
   const [ingredients, setIngredients] = useState(INIT_INGREDIENTS);
   const [active, setActive] = useState(-1);
   const [breathing, setBreathing] = useState(false);
+  const [clickable, setClickable] = useState(true);
   const [makePotion, setMakePotion] = useState(false);
   const [letterPath, setLetterPath] = useState(null);
   const [bgm] = useState(new Audio(music));
@@ -180,6 +181,7 @@ function App() {
     }
     if(scene == "garden") {
       return <Garden
+      clickable={clickable} setClickable={setClickable}
       handleSetDialogScene={handleSetDialogScene} />
     }
     if(scene == "desk") {
@@ -215,6 +217,7 @@ function App() {
       setCurrentMessage={setCurrentMessage}
       dialogOpacity={dialogOpacity}
       setBreathing={setBreathing}
+      setClickable={setClickable}
       setMakePotion={setMakePotion}
       completeBase={completeBase}
       handleLetterPath={handleLetterPath}

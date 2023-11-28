@@ -8,9 +8,14 @@ import Message from './Message';
 
 import character from "../assets/griffon.png";
 import galaxy from "../assets/cosmic/galaxy.png";
+import camomilePath from "../assets/garden/camomile.png";
+import eveningPrimrosePath from "../assets/garden/evening-primrose.png";
+import rosePath from "../assets/garden/rose.png";
 import letter1 from "../assets/love-letter-1.png";
 
-const DialogBox = ({ scene, handleSetScene, handleSetDialogScene, handleCloseDialog, currentMessage, setCurrentMessage, dialogOpacity, setBreathing, setMakePotion, completeBase, handleLetterPath, playMusic, reset }) => {
+const DialogBox = ({ scene, handleSetScene, handleSetDialogScene, handleCloseDialog, 
+    currentMessage, setCurrentMessage, dialogOpacity, setBreathing, setMakePotion, 
+    completeBase, handleLetterPath, setClickable, playMusic, reset }) => {
     const handleClick = () => {
         if (currentMessage < msgLength - 1) {
             setCurrentMessage(currentMessage + 1);
@@ -196,7 +201,7 @@ const DialogBox = ({ scene, handleSetScene, handleSetDialogScene, handleCloseDia
         ],
         "garden": [
             {
-                message: "Only plants with a hovering star are ripe for use. Click on them to see their effects.",
+                message: "Only the hovering plants are ripe for use. Click on them to see their effects.",
                 speaker: "Leymus",
                 img: character,
                 response: [
@@ -211,7 +216,7 @@ const DialogBox = ({ scene, handleSetScene, handleSetDialogScene, handleCloseDia
             {
                 message: "It's used for fighting anxiety and depression and acts as a mild sedative which calms nerves and reduces anxiety.",
                 speaker: "Chamomile",
-                img: character,
+                img: camomilePath,
                 response: [
                     <EnterBtn
                     primary={true}
@@ -223,49 +228,58 @@ const DialogBox = ({ scene, handleSetScene, handleSetDialogScene, handleCloseDia
                     />,
                     <CloseBtn
                     content="Cancel"
-                    handleCloseDialog={handleCloseDialog}
+                    handleCloseDialog={() => {
+                        setClickable(true);
+                        handleCloseDialog();
+                    }}
                     />
                 ]
             }
         ],
-        "herb 2": [
+        "evening-primrose": [
             {
-                message: "It's used for fighting anxiety and depression and acts as a mild sedative which calms nerves and reduces anxiety.",
-                speaker: "Herb 2",
-                img: character,
+                message: "Its seeds can be used to make oil that may help ease acne, relieve PMS symptoms such as swelling and irritability.",
+                speaker: "Evening Primrose",
+                img: eveningPrimrosePath,
                 response: [
                     <EnterBtn
                     primary={true}
-                    content={"- Pick herb 2 as Base -"}
+                    content={"- Pick Primrose as Base -"}
                     handleSetScene={() => {
-                        completeBase("herb 2");
-                        handleSetScene("cottage-pre-desk-herb2");
+                        completeBase("Evening Primrose");
+                        handleSetScene("cottage-pre-desk-evening-primrose");
                     }}
                     />,
                     <CloseBtn
                     content="Cancel"
-                    handleCloseDialog={handleCloseDialog}
+                    handleCloseDialog={() => {
+                        setClickable(true);
+                        handleCloseDialog();
+                    }}
                     />
                 ]
             }
         ],
-        "herb 3": [
+        "rose": [
             {
-                message: "It's used for fighting anxiety and depression and acts as a mild sedative which calms nerves and reduces anxiety.",
-                speaker: "Herb 3",
-                img: character,
+                message: "People often have rose tea to enjoy its sweet aroma along with its relaxation, stress reduction and antidepressant effects.",
+                speaker: "Rose",
+                img: rosePath,
                 response: [
                     <EnterBtn
                     primary={true}
-                    content={"- Pick herb 3 as Base -"}
+                    content={"- Pick Rose as Base -"}
                     handleSetScene={() => {
-                        completeBase("herb 3");
-                        handleSetScene("cottage-pre-desk-herb3");
+                        completeBase("Rose");
+                        handleSetScene("cottage-pre-desk-rose");
                     }}
                     />,
                     <CloseBtn
                     content="Cancel"
-                    handleCloseDialog={handleCloseDialog}
+                    handleCloseDialog={() => {
+                        setClickable(true);
+                        handleCloseDialog();
+                    }}
                     />
                 ]
             }
@@ -275,13 +289,7 @@ const DialogBox = ({ scene, handleSetScene, handleSetDialogScene, handleCloseDia
                 message: "Welcome back. I see that you've chosen chamomile. Good choice for anxiety relief.",
                 speaker: "Leymus",
                 img: character,
-                response: [
-                    <NextBtn
-                    content={"Yes, I've been a bit anxious lately. "}
-                    handleClick={handleClick}
-                    />
-                    // TODO: change ingredients!
-                ]
+                response: []
             },
             {
                 message: "Now it's time to pick our core energizer... Why don't we do a little tarot drawing at my alchemy table to match your energy.",
@@ -298,18 +306,12 @@ const DialogBox = ({ scene, handleSetScene, handleSetDialogScene, handleCloseDia
                 ]
             }
         ],
-        "cottage-pre-desk-herb2": [
+        "cottage-pre-desk-evening-primrose": [
             {
-                message: "Welcome back. I see that you've chosen herb 2. Good choice for anxiety relief.",
+                message: "Welcome back. I see that you've chosen evening primrose. Good choice for improving skin health.",
                 speaker: "Leymus",
                 img: character,
-                response: [
-                    <NextBtn
-                    content={"Yes, I've been a bit anxious lately. "}
-                    handleClick={handleClick}
-                    />
-                    // TODO: change ingredients!
-                ]
+                response: []
             },
             {
                 message: "Now it's time to pick our core energizer... Why don't we do a little tarot drawing at my alchemy table to match your energy.",
@@ -326,18 +328,12 @@ const DialogBox = ({ scene, handleSetScene, handleSetDialogScene, handleCloseDia
                 ]
             }
         ],
-        "cottage-pre-desk-herb3": [
+        "cottage-pre-desk-rose": [
             {
-                message: "Welcome back. I see that you've chosen herb 3. Good choice for anxiety relief.",
+                message: "Welcome back. I see that you've chosen rose. Good choice for stress relief.",
                 speaker: "Leymus",
                 img: character,
-                response: [
-                    <NextBtn
-                    content={"Yes, I've been a bit anxious lately. "}
-                    handleClick={handleClick}
-                    />
-                    // TODO: change ingredients!
-                ]
+                response: []
             },
             {
                 message: "Now it's time to pick our core energizer... Why don't we do a little tarot drawing at my alchemy table to match your energy.",
@@ -570,13 +566,13 @@ const DialogBox = ({ scene, handleSetScene, handleSetDialogScene, handleCloseDia
     
     return (
         <div className="dialog-wrapper fade-wrapper"
-        style={{opacity: dialogOpacity}}>
+        style={{opacity: dialogOpacity, pointerEvents: dialogOpacity === 0 ? "none": "auto"}}>
             <div className="dialogWindow">
                 <div>
                     <Message speaker={scene_messages[scene][currentMessage].speaker} message={scene_messages[scene][currentMessage].message} key={currentMessage} />
                     <div className="img-wrapper">
                         <img
-                        id={scene_messages[scene][currentMessage].speaker }
+                        id={scene_messages[scene][currentMessage].speaker.replace(" ", "-")}
                         style={{display: scene_messages[scene][currentMessage].img ? "block" : "none"}}
                         src={scene_messages[scene][currentMessage].img} alt="speaker character" />
                     </div>

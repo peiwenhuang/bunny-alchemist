@@ -10,7 +10,7 @@ import envMapSrc from "../../assets/cosmic/empty_warehouse_01.jpg";
 const NUM_BOX_BREATHING = 1; //////
 const TIME_PER_BREATH = 4000;
 const TIME_PER_CYCLE = TIME_PER_BREATH * 4;
-const delta = 0.005;
+const delta = 0.003;
 
 const BreathingSphere = ({ breathing, setBreathing, handleResumeDialog, completeMeditation }) => {
     const [animate, setAnimate] = useState("still"); // range: "still", "enlarge", "shrink"

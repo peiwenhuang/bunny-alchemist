@@ -6,6 +6,8 @@ import { OrbitControls } from "@react-three/drei";
 
 import CosmicSphere from '../Geometry/Cosmic/CosmicSphere';
 import BreathingSphere from '../Geometry/Cosmic/BreathingSphere';
+import { Lotus } from '../Geometry/Cosmic/Lotus';
+import { LotusBloom } from '../Geometry/Cosmic/LotusBloom';
 
 function Cosmic({ breathing, setBreathing, handleSetDialogScene, completeMeditation }) {
 
@@ -23,10 +25,11 @@ function Cosmic({ breathing, setBreathing, handleSetDialogScene, completeMeditat
                 <pointLight
                 castShadow
                 />
-                <BreathingSphere
+                <LotusBloom />
+                {/* <BreathingSphere
                 breathing={breathing} setBreathing={setBreathing}
                 handleResumeDialog={() => handleSetDialogScene("cosmic-post-breath")}
-                completeMeditation={completeMeditation} />
+                completeMeditation={completeMeditation} /> */}
                 <CosmicSphere />
                 
                 <OrbitControls maxDistance={10} />
