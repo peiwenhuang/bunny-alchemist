@@ -25,6 +25,10 @@
     transition: opacity ease-out;
     transition-duration: 0.8s;
 }
+.fade-wrapper-slow {
+    transition: opacity ease-in;
+    transition-duration: 1.2s;
+}
 
 @import "variables";
 @import "mixin";
@@ -33,3 +37,4 @@
 @import "progress";
 @import "desk";
 @import "letter";
+@import "cosmic";

@@ -8,6 +8,7 @@ import Cosmic from './Canvases/Cosmic';
 import Garden from './Canvases/Garden';
 import Desk from './Canvases/Desk';
 import DialogBox from './Dialogue/Dialogue';
+import BreathingTxt from './Dialogue/Breathing';
 import Letter from './Dialogue/Letter';
 
 import music from './assets/forest/forest-bgm.mp3';
@@ -52,6 +53,7 @@ function App() {
   const [ingredients, setIngredients] = useState(INIT_INGREDIENTS);
   const [active, setActive] = useState(-1);
   const [breathing, setBreathing] = useState(false);
+  const [breathOpacity, setBreathOpacity] = useState(0);
   const [clickable, setClickable] = useState(true);
   const [makePotion, setMakePotion] = useState(false);
   const [letterPath, setLetterPath] = useState(null);
@@ -65,6 +67,15 @@ function App() {
       window.removeEventListener("beforeunload", alertUser);
     };
   }, []);
+  useEffect(() => {
+    if(breathing) {
+      setBreathOpacity(1);
+    }
+    else {
+      setBreathOpacity(0);
+    }
+  }, [breathing]);
+
   const alertUser = (e) => {
     e.preventDefault();
     e.returnValue = "";
@@ -224,6 +235,10 @@ function App() {
       playMusic={play}
       reset={reset}
       />
+      <div className="fade-wrapper" style={{opacity: breathOpacity}}>
+        <BreathingTxt
+        />
+      </div>
     </div>
   );
 }

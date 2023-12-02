@@ -1,11 +1,7 @@
 import React, { useRef, useState } from 'react';
 import * as THREE from 'three';
-import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
 import { useFrame } from '@react-three/fiber';
 import { Sphere } from "@react-three/drei";
-import { Icosahedron } from '@react-three/drei';
-
-import envMapSrc from "../../assets/cosmic/empty_warehouse_01.jpg";
 
 const NUM_BOX_BREATHING = 1; //////
 const TIME_PER_BREATH = 4000;
@@ -15,13 +11,6 @@ const delta = 0.003;
 const BreathingSphere = ({ breathing, setBreathing, handleResumeDialog, completeMeditation }) => {
     const [animate, setAnimate] = useState("still"); // range: "still", "enlarge", "shrink"
     const ballRef = useRef();
-
-    const hdrEquirect = new RGBELoader().load(
-        envMapSrc,
-        () => {
-            hdrEquirect.mapping = THREE.EquirectangularReflectionMapping;
-        }
-    );
 
     useFrame(() => {
         ballRef.current.rotation.x += delta;
@@ -73,10 +62,9 @@ const BreathingSphere = ({ breathing, setBreathing, handleResumeDialog, complete
     }
 
     return (
-        <Sphere castShadow receiveShadow ref={ballRef} scale={1.8} position={[0, 0.5, 0]} onClick={handleScaling}>
+        <Sphere castShadow receiveShadow ref={ballRef} scale={1.2} position={[0, 0.5, 0]}>
             <meshPhysicalMaterial attach="material"
-            roughness={0.1} transmission={1.5} thickness={0.5}
-            envMap={hdrEquirect} />
+            roughness={0.1} transmission={1.5} thickness={0.5}/>
         </Sphere>
     );
 };

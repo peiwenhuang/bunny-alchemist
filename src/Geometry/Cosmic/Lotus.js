@@ -7,22 +7,42 @@ Title: Lotus Slow
 */
 
 import React, { useRef, useEffect } from "react";
+import * as THREE from 'three';
 import { useGLTF, useAnimations } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
 
 import model from "../../assets/cosmic/lotus_slow.glb";
 
-export function Lotus(props) {
+const NUM_BOX_BREATHING = 1; //////
+const TIME_PER_BREATH = 4;
+const TIME_PER_CYCLE = TIME_PER_BREATH * 4;
+const delta = 0.000;
+
+export function Lotus({ breathing, setBreathing, handleResumeDialog, completeMeditation }) {
   const ref = useRef();
   const { nodes, materials, animations } = useGLTF(model);
   const { actions } = useAnimations(animations, ref);
 
   useEffect(() => {
     console.log(actions);
-    actions["CINEMA_4D_Main"].play();
-  });
+
+    if (breathing) {
+      const bloomClip = actions["CINEMA_4D_Main"];
+      console.log(bloomClip);
+      bloomClip.setLoop(THREE.LoopPingPong, NUM_BOX_BREATHING * 2);
+      bloomClip.setDuration(TIME_PER_BREATH * 4);
+      bloomClip.play();
+
+      setBreathing(false);
+      setTimeout(() => {
+        handleResumeDialog();
+        completeMeditation();
+    }, TIME_PER_CYCLE * (NUM_BOX_BREATHING) * 2000);
+    }
+  }, [breathing]);
 
   return (
-    <group ref={ref} scale={0.05} {...props} dispose={null}>
+    <group ref={ref} scale={0.02} position={[0, 0, 0]} dispose={null}>
       <group name="Sketchfab_Scene">
         <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]}>
           <group
