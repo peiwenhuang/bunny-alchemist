@@ -14,18 +14,13 @@ import Letter from './Dialogue/Letter';
 import music from './assets/forest/forest-bgm.mp3';
 import { click } from '@testing-library/user-event/dist/click';
 
-// TODO: scene transition + loading screen svg animation
 // TODO: progress bar transition
-// TODO: garden herb onclick enlarge
 // TODO: cosmic add "breath in/out" text
 // TODO: add timeout before starting enlarging
-
-// TODO: base tailored message for anxiety
-// TODO: model env (desk)
-// TODO: set breathing times to 4
 // TODO: text box width
-// TODO: breathing lotus
 // TODO: credit page
+
+// TODO: set breathing times to 4
 
 /* scenes: 
 "forest", "cottage-pre-cosmic", "cosmic-pre-breath", "cosmic-post-breath", 

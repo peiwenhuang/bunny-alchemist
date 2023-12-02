@@ -521,6 +521,7 @@ const DialogBox = ({ scene, handleSetScene, handleSetDialogScene, handleCloseDia
         "cottage-letter-1": [
             {
                 message: "I am free to love, to know peace, and to bring joy.",
+                speaker: "Note",
                 response: [
                     <EnterBtn
                     content={"- Go Back -"}
@@ -541,6 +542,16 @@ const DialogBox = ({ scene, handleSetScene, handleSetDialogScene, handleCloseDia
                     content={"- Remake Potion -"}
                     handleClick={() => {
                         reset();
+                    }}
+                    />,
+                    <EnterBtn
+                    primary={true}
+                    content={"- Finish -"}
+                    handleSetScene={() => {
+                        // view all credits of models + assets
+                        // restart button
+                        // link to my portfolio?
+                        // handleSetDialogScene("cottage-finale");
                     }}
                     />
                 ]

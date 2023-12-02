@@ -1,4 +1,4 @@
-import lotusPath from "../assets/cosmic/lotus-1.png";
+import galaxyPath from "../assets/cosmic/galaxy.png";
 import camomilePath from "../assets/garden/camomile.png";
 import eveningPrimrosePath from "../assets/garden/evening-primrose.png";
 import rosePath from "../assets/garden/rose.png";
@@ -17,7 +17,7 @@ potion: complete <-> incomplete
 
 const imgPaths = {
     "Meditation": {
-        "Complete": lotusPath
+        "Complete": galaxyPath
     },
     "Base": {
         "Chamomile": camomilePath,
