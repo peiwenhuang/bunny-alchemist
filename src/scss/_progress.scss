@@ -6,6 +6,12 @@
     display: flex;
     color: white;
 
+    @include device(mobile) {
+        flex-direction: column;
+        left: 24px;
+        display: none;
+    }
+
     li {
         position: relative;
         margin: 0 1em;
@@ -14,6 +20,13 @@
         align-items: center;
         justify-content: center;
         transition: ease-in;
+
+        @include device(mobile) {
+            margin-left: 0;
+            flex-direction: row;
+            justify-content: start;
+            align-items: start;
+        }
         
         .progressIcon-wrapper {
             @include box-shadow;
@@ -25,12 +38,27 @@
             margin-bottom: 0.5em;
 
             border-radius: 100px;
-            // TODO: change color
             border: 3px solid $gold;
             background-color: $grey;
 
+            @include device(mobile) {
+                margin-bottom: 1em;
+                margin-right: 1em;
+            }
+
             img {
-                width: 6vh;
+                max-width: 5vh;
+            }
+        }
+        .text-container {
+            text-align: center;
+
+            @include device(mobile) {
+                text-align: left;
+                height: 8vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
             }
         }
         h3 {
@@ -57,6 +85,13 @@
         background-color: $gold;
         z-index: -1;
         transition: .8s;
+
+        @include device(mobile) {
+            transform: rotate(90deg);
+            top: -.6em;
+            left: 2em;
+            width: 1em;
+        }
     }
 
     li:first-child::before {
@@ -74,9 +109,67 @@
     }
 
     #progress-1 {
-        width: 4.5em;
+        max-width: 3em;
+
+        @include device(mobile) {
+            max-height: 5vh;
+            width: auto;
+        }
     }
     #progress-2 {
-        width: 2em;
+        max-width: 2em;
+
+        @include device(mobile) {
+            max-height: 4vh;
+            width: auto;
+        }
+    }
+}
+
+.popup-container {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: $grey;
+    z-index: 101; // > ExitBtn = 100
+    transition: .8s;
+
+    .popup {
+        position: relative;
+        background-color: $purple;
+        top: 20%;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        height: 55%;
+        border-radius: 32px;
+        border: $gold 3px solid;
+
+        .header {
+            position: relative;
+            padding: 8px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+        h2 {
+            font-size: 1.4rem;
+        }
+
+        .progress-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .progressBar {
+            position: relative;
+            top: 32px;
+            left: auto;
+            display: block;
+        }
     }
 }

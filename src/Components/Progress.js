@@ -1,3 +1,5 @@
+import { ClosePopup } from "./Button";
+
 import galaxyPath from "../assets/cosmic/galaxy.png";
 import camomilePath from "../assets/garden/camomile.png";
 import eveningPrimrosePath from "../assets/garden/evening-primrose.png";
@@ -21,7 +23,7 @@ const imgPaths = {
     },
     "Base": {
         "Chamomile": camomilePath,
-        "Evening Primrose": eveningPrimrosePath,
+        "Eve. Primrose": eveningPrimrosePath,
         "Rose": rosePath
     },
     "Energizer": {
@@ -76,8 +78,10 @@ const Progress = ({ ingredients, activeIdx, opacity }) => {
                             <div className='progressIcon-wrapper'>
                                 {item.status === "Complete" ? <img src={imgPaths[item.title][item.name]} id={`progress-${key}`} /> : null}
                             </div>
-                            <h3>{item.title}</h3>
-                            <p>{item.name}</p>
+                            <div className="text-container">
+                                <h3>{item.title}</h3>
+                                <p>{item.name}</p>
+                            </div>
                         </li>
                     )
                 })
@@ -86,4 +90,27 @@ const Progress = ({ ingredients, activeIdx, opacity }) => {
     );
 }
 
+const ProgressPopup = ({ show, hide, ingredients, active }) => {
+    return (
+        <div className="popup-container" style={{display: show ? "block" : "none"}}>
+            <div className="popup">
+                <div className="header">
+                    <h2>Progress</h2>
+                    <ClosePopup handleClick={() => hide()} />
+                </div>
+                <div className="progress-wrapper">
+                    <Progress
+                    opacity={1}
+                    ingredients={ingredients}
+                    activeIdx={active}
+                    />
+                </div>
+            </div>
+        </div>
+    );
+}
+
+
+
 export default Progress;
+export { ProgressPopup };

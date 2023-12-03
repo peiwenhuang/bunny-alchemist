@@ -14,5 +14,9 @@
         max-width: 70%;
         transform: rotate(15deg);
         @include drop-shadow($grey, 8px, 16px);
+
+        @include device(mobile) {
+            max-width: 100%;
+        }
     }
 }

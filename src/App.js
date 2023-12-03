@@ -1,7 +1,9 @@
 import React, { useEffect, useState, Suspense } from 'react';
 
-import { ExitBtn } from './Components/Button';
+import { isTablet, isMobile } from './Canvases/Desk';
+import { ExitBtn, ProgressBtn } from './Components/Button';
 import Progress from './Components/Progress';
+import { ProgressPopup } from './Components/Progress';
 import Forest from './Canvases/Forest';
 import Cottage from './Canvases/Cottage';
 import Cosmic from './Canvases/Cosmic';
@@ -14,11 +16,8 @@ import Letter from './Dialogue/Letter';
 import music from './assets/forest/forest-bgm.mp3';
 import { click } from '@testing-library/user-event/dist/click';
 
-// TODO: progress bar transition
 // TODO: cosmic add "breath in/out" text
-// TODO: add timeout before starting enlarging
-// TODO: text box width
-// TODO: credit page
+// TODO: FINISH + credit page
 
 // TODO: set breathing times to 4
 
@@ -44,6 +43,7 @@ function App() {
   const [dialogScene, setDialogScene] = useState("forest");
   const [dialogOpacity, setDialogOpacity] = useState(1);
   const [progressOpacity, setProgressOpacity] = useState(0);
+  const [showPopup, setShowPopup] = useState(false);
   const [currentMessage, setCurrentMessage] = useState(0);
   const [ingredients, setIngredients] = useState(INIT_INGREDIENTS);
   const [active, setActive] = useState(-1);
@@ -118,7 +118,7 @@ function App() {
       setDialogScene(newScene);
       setCurrentMessage(0);
       setDialogOpacity(1);
-    }, 1800);
+    }, 800);
   }
   const handleCloseDialog = () => {
     setDialogOpacity(0);
@@ -167,9 +167,16 @@ function App() {
       />
     }
   }
+  const popupIcon = () => {
+    if(progressOpacity) {
+      return <ProgressBtn
+      handleClick={() => setShowPopup(true)}
+      />
+    }
+  }
   
   const display = () => {
-    if(scene == "forest") {
+    if(scene === "forest") {
       return <Forest />
     }
     if(scene.includes("cottage")) {
@@ -185,12 +192,12 @@ function App() {
       handleSetDialogScene={handleSetDialogScene}
       completeMeditation={completeMeditation} />
     }
-    if(scene == "garden") {
+    if(scene === "garden") {
       return <Garden
       clickable={clickable} setClickable={setClickable}
       handleSetDialogScene={handleSetDialogScene} />
     }
-    if(scene == "desk") {
+    if(scene === "desk") {
       return <Desk
       handleCardFlip={(dialogScene, energizer) => {
         handleSetDialogScene(dialogScene);
@@ -209,6 +216,13 @@ function App() {
       ingredients={ingredients}
       activeIdx={active}
       />
+      <ProgressPopup
+      show={showPopup}
+      hide={() => setShowPopup(false)}
+      ingredients={ingredients}
+      activeIdx={active}
+      />
+      {popupIcon()}
       {exitIcon()}
         {display()}
       <Letter

@@ -246,7 +246,7 @@ const DialogBox = ({ scene, handleSetScene, handleSetDialogScene, handleCloseDia
                     primary={true}
                     content={"- Pick Primrose as Base -"}
                     handleSetScene={() => {
-                        completeBase("Evening Primrose");
+                        completeBase("Eve. Primrose");
                         handleSetScene("cottage-pre-desk-evening-primrose");
                     }}
                     />,
@@ -579,14 +579,12 @@ const DialogBox = ({ scene, handleSetScene, handleSetDialogScene, handleCloseDia
         <div className="dialog-wrapper fade-wrapper"
         style={{opacity: dialogOpacity, pointerEvents: dialogOpacity === 0 ? "none": "auto"}}>
             <div className="dialogWindow">
-                <div>
-                    <Message speaker={scene_messages[scene][currentMessage].speaker} message={scene_messages[scene][currentMessage].message} key={currentMessage} />
-                    <div className="img-wrapper">
-                        <img
-                        id={scene_messages[scene][currentMessage].speaker.replace(" ", "-")}
-                        style={{display: scene_messages[scene][currentMessage].img ? "block" : "none"}}
-                        src={scene_messages[scene][currentMessage].img} alt="speaker character" />
-                    </div>
+                <Message speaker={scene_messages[scene][currentMessage].speaker} message={scene_messages[scene][currentMessage].message} key={currentMessage} />
+                <div className="img-container">
+                    <img
+                    id={scene_messages[scene][currentMessage].speaker.replace(" ", "-")}
+                    style={{display: scene_messages[scene][currentMessage].img ? "block" : "none"}}
+                    src={scene_messages[scene][currentMessage].img} alt="speaker character" />
                 </div>
             </div>
             <ul className="dialogFooter">

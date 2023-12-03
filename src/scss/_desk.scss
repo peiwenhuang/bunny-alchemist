@@ -1,3 +1,9 @@
+#canvas-desk {
+    @include device(tablet) {
+        width: 100vw;
+    } 
+}
+
 .tarot-card {
     :hover {
         cursor: pointer;

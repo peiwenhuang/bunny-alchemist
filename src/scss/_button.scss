@@ -1,14 +1,28 @@
-.exitBtn {
+.exitBtn, .progressBtn {
     @include drop-shadow(black);
     position: fixed;
     top: 5vh;
-    right: 5vh;
     color: white;
     z-index: 100;
 
-    :hover {
-        cursor: pointer;
+    @include device(mobile) {
+        right: 24px;
     }
+}
+.exitBtn:hover, .exitBtn:focus, .progressBtn:hover, .progressBtn:focus {
+    cursor: pointer;
+}
+
+.exitBtn {
+    right: 5vh;
+}
+
+.progressBtn {
+    left: 24px;
+}
+
+.closePopup:hover, .closePopup:focus {
+        cursor: pointer;
 }
 
 .next-arrow {

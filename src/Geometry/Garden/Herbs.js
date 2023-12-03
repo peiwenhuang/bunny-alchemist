@@ -42,22 +42,6 @@ export function Plant({ clickable, setClickable, type, handleSetDialogScene, pos
         }
     };
 
-    const handleClick = () => {
-        if(clickable) {
-            setClickable(false);
-            handleSetDialogScene();
-            // tl.to(ref.current.scale, {
-            //     x: ref.current.scale.x / 1.1,
-            //     y: ref.current.scale.y / 1.1,
-            //     z: ref.current.scale.z / 1.1,
-            // });
-        }
-    };
-
-//   useFrame((state, delta) => {
-//     ref.current.rotation.x -= delta;
-//   });
-
     if(type === "chamomile") {
         return (
             <group position={position} scale={scale} ref={ref} rotation={[- Math.PI / 2, Math.PI / 6, 0]} dispose={null}>

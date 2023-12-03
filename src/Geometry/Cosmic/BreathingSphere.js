@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { useFrame } from '@react-three/fiber';
 import { Sphere } from "@react-three/drei";
@@ -7,6 +7,7 @@ const NUM_BOX_BREATHING = 1; //////
 const TIME_PER_BREATH = 4000;
 const TIME_PER_CYCLE = TIME_PER_BREATH * 4;
 const delta = 0.003;
+const delay = 1000;
 
 const BreathingSphere = ({ breathing, setBreathing, handleResumeDialog, completeMeditation }) => {
     const [animate, setAnimate] = useState("still"); // range: "still", "enlarge", "shrink"
@@ -51,15 +52,20 @@ const BreathingSphere = ({ breathing, setBreathing, handleResumeDialog, complete
             clearInterval(breathingInterval);
         }, TIME_PER_CYCLE * (NUM_BOX_BREATHING - 1));
     };
-    if(breathing) {
-        handleScaling();
-        setBreathing(false);
-        // open dialog post-breathing
-        setTimeout(() => {
-            handleResumeDialog();
-            completeMeditation();
-        }, TIME_PER_CYCLE * (NUM_BOX_BREATHING));
-    }
+
+    useEffect(() => {
+        if(breathing) {
+            setTimeout(() => {
+                handleScaling();
+                // open dialog post-breathing
+                setTimeout(() => {
+                    handleResumeDialog();
+                    completeMeditation();
+                    setBreathing(false);
+                }, TIME_PER_CYCLE * NUM_BOX_BREATHING);
+            }, delay);
+        }
+    }, [breathing]);
 
     return (
         <Sphere castShadow receiveShadow ref={ballRef} scale={1.2} position={[0, 0.5, 0]}>

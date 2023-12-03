@@ -1,4 +1,8 @@
+import { isMobile } from '../Canvases/Desk';
+
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import ListIcon from '@mui/icons-material/List';
+import CloseIcon from '@mui/icons-material/Close';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 function ExitBtn ({ restart }) {
@@ -9,6 +13,30 @@ function ExitBtn ({ restart }) {
             restart();
         }}>
         <ExitToAppIcon fontSize='large' />
+        </div> 
+    );
+}
+
+function ProgressBtn ({ handleClick }) {
+    return (
+        <div className='progressBtn'
+        style={{display: isMobile() ? "block": "none"}}
+        onClick={() => {
+            handleClick();
+        }}>
+            <ListIcon fontSize='large' />
+        </div> 
+    );
+}
+
+function ClosePopup ({ handleClick }) {
+    return (
+        <div className='closePopup'
+        onClick={() => {
+            // change modal visibility
+            handleClick();
+        }}>
+            <CloseIcon fontSize='large' />
         </div> 
     );
 }
@@ -50,4 +78,4 @@ function CloseBtn({ handleCloseDialog, content = null, primary = false }) {
     );
 }
 
-export {ExitBtn, NextBtn, EnterBtn, CloseBtn};
+export {ExitBtn, ProgressBtn, ClosePopup, NextBtn, EnterBtn, CloseBtn};

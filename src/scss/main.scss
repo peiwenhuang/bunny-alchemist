@@ -1,4 +1,12 @@
 @import "reset";
+@import "variables";
+@import "mixin";
+@import "dialogue";
+@import "button";
+@import "progress";
+@import "desk";
+@import "letter";
+@import "cosmic";
 
 * {
     padding: 0;
@@ -11,7 +19,6 @@
     outline: none;
     border: none;
     background-color: black;
-    // TODO: change font family
     font-family: Optima, Segoe, "Segoe UI", Candara, Calibri, Arial, sans-serif;
 }
 
@@ -29,12 +36,3 @@
     transition: opacity ease-in;
     transition-duration: 1.2s;
 }
-
-@import "variables";
-@import "mixin";
-@import "dialogue";
-@import "button";
-@import "progress";
-@import "desk";
-@import "letter";
-@import "cosmic";

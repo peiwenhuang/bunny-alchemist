@@ -1,3 +1,19 @@
+// RWD breakpoints (ref: https://www.section.io/engineering-education/facilitating-css-media-queries-using-scss-mixins/)
+@mixin device ($breakpoint) { //the name of the mixin is devices
+  
+    @if $breakpoint == tablet {    
+    @media only screen and (max-width: 896px) {
+      @content;
+    }
+  }
+ 
+  @if $breakpoint == mobile {
+    @media only screen and (max-width: 430px) {
+      @content;
+    }
+  }
+}
+
 @mixin p-16 {
     padding: 16px;
 }
@@ -7,7 +23,7 @@
 }
 
 @mixin hover-pointer {
-    :hover {
+    :hover, :focus {
         cursor: pointer;
     }
 }
@@ -28,10 +44,18 @@
     border: $gold 3px solid;
     border-radius: 100px;
     @include drop-shadow($gold-darker, 0.2px, 0.8px);
+
+    @include device(mobile) {
+        border-radius: 48px;
+    }
 }
 
 @mixin text-response {
     @include br-16;
+
+    @include device(mobile) {
+        border-radius: 48px;
+    }
 
     div {
         @include text-box;
@@ -40,12 +64,12 @@
         text-align: center;
     }
 
-    :hover {
-        background-color: $grey;
+    :hover, :focus {
+        background-color: $green;
         transition: .5s;
 
         .primary {
-            background-color: $purple-darker;
+            background-color: $green;
         }
     }
 }
