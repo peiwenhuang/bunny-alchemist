@@ -7,7 +7,7 @@ const NUM_BOX_BREATHING = 1; //////
 const TIME_PER_BREATH = 4000;
 const TIME_PER_CYCLE = TIME_PER_BREATH * 4;
 const delta = 0.003;
-const delay = 1000;
+const DELAY_BEFORE_BREATH = 1000;
 
 const BreathingSphere = ({ breathing, setBreathing, handleResumeDialog, completeMeditation }) => {
     const [animate, setAnimate] = useState("still"); // range: "still", "enlarge", "shrink"
@@ -63,7 +63,7 @@ const BreathingSphere = ({ breathing, setBreathing, handleResumeDialog, complete
                     completeMeditation();
                     setBreathing(false);
                 }, TIME_PER_CYCLE * NUM_BOX_BREATHING);
-            }, delay);
+            }, DELAY_BEFORE_BREATH);
         }
     }, [breathing]);
 
@@ -76,3 +76,4 @@ const BreathingSphere = ({ breathing, setBreathing, handleResumeDialog, complete
 };
 
 export default BreathingSphere;
+export { NUM_BOX_BREATHING, TIME_PER_BREATH, TIME_PER_CYCLE, DELAY_BEFORE_BREATH };

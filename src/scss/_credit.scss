@@ -1,0 +1,49 @@
+.credits-container {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    box-sizing: border-box;
+    z-index: 100;
+    background-color: $grey-darker;
+    padding: 15% 72px;
+    text-align: center;
+    color: white;
+
+    @include device(mobile) {
+        padding-top: 6vh;
+    }
+
+    h1, h2, ul,  a {
+        @include text-shadow;
+    }
+    h1 {
+        font-size: 3em;
+        margin-bottom: 24px;
+        color: $gold;
+
+        @include device(mobile) {
+            font-size: 1.5em;
+            margin-bottom: 8px;
+        }
+    }
+    h2 {
+        font-size: 1.5em;
+        margin-bottom: 16px;
+
+        @include device(mobile) {
+            font-size: 1em;
+            margin-bottom: 4px;
+        }
+    }
+    ul {
+        line-height: 1.2;
+        
+        @include device(mobile) {
+            font-size: 10px;
+        }
+
+        a {
+            color: white;
+        }
+    }
+}

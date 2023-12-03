@@ -23,19 +23,19 @@ function Garden({ clickable, setClickable, handleSetDialogScene }) {
           <ambientLight/>
           <World texturePath={gardenPath} />
 
-          <Plant position={[-30, -15, -15]}
+          <Plant position={[-10, -50, -5]}
           type="chamomile"
           clickable={clickable}
           setClickable={setClickable}
           handleSetDialogScene={() => handleSetDialogScene("chamomile")} />
 
-          <Plant position={[40, -15, -15]}
+          <Plant position={[60, 0, -15]}
           type="evening-primrose"
           clickable={clickable}
           setClickable={setClickable}
           handleSetDialogScene={() => handleSetDialogScene("evening-primrose")} />
 
-          <Plant position={[5, -15, 45]}
+          <Plant position={[-15, 40, 0]}
           type="rose"
           clickable={clickable}
           setClickable={setClickable}

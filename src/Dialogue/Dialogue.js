@@ -548,10 +548,23 @@ const DialogBox = ({ scene, handleSetScene, handleSetDialogScene, handleCloseDia
                     primary={true}
                     content={"- Finish -"}
                     handleSetScene={() => {
-                        // view all credits of models + assets
-                        // restart button
-                        // link to my portfolio?
-                        // handleSetDialogScene("cottage-finale");
+                        handleSetScene("credit");
+                        handleLetterPath(null);
+                    }}
+                    />
+                ]
+            }
+        ],
+        "credit": [
+            {
+                message: "Thank you for spending time with me here, I hope we'll meet again soon.",
+                speaker: "Leymus",
+                img: character,
+                response: [
+                    <NextBtn
+                    content={"- Play Again -"}
+                    handleClick={() => {
+                        reset();
                     }}
                     />
                 ]

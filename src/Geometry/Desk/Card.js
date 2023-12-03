@@ -23,7 +23,7 @@ const Card = ({ position, frontTexture, flipable, handleCardFlip, rotation=[Math
             }
             return viewport.width / 5;
         }
-        return 1.5;
+        return 1;
     }
 
     const tl = new gsap.timeline({

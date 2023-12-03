@@ -1,10 +1,15 @@
 .breathing-text {
     z-index: 100;
     position: fixed;
-    top: 68vh;
+    top: 80vh;
     left: 50vw;
     transform: translateX(-50%); /* to center the dialogue window */
     color: white;
     font-size: 4rem;
     @include text-shadow;
+
+    @include device(mobile) {
+        top: 74vh;
+        font-size: 2rem;
+    }
 }

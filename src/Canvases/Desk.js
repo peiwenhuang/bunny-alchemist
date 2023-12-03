@@ -1,10 +1,12 @@
 import React, { useState, Suspense } from 'react';
 import * as THREE from 'three';
-import { Canvas } from '@react-three/fiber';
+import { Canvas, useLoader } from '@react-three/fiber';
+import { TextureLoader } from 'three';
 import { OrbitControls } from "@react-three/drei";
 
 import Table from '../Geometry/Desk/Table';
 import { TheFool, Strength, TheMagician } from '../Geometry/Desk/Card';
+import carpetTexture from "../assets/desk/carpet.jpg";
 
 // TODO: randomize cards
 
@@ -20,6 +22,11 @@ const isMobile = () => {
 
 function Desk({ handleCardFlip }) {
     const [flipable, setFlipable] = useState(true);
+    const map = useLoader(TextureLoader, carpetTexture);
+    map.wrapS = THREE.RepeatWrapping;
+    map.wrapT = THREE.RepeatWrapping;
+    map.offset.set(0, 0);
+    map.repeat.set(6, 6);
     const handleDeskFlip = (dialogScene, energizer) => {
         setFlipable(false);
         setTimeout(() => handleCardFlip(dialogScene, energizer), 1000);
@@ -76,7 +83,11 @@ function Desk({ handleCardFlip }) {
                 flipable={flipable} 
                 handleCardFlip={() => handleDeskFlip("desk-the-magician", "The Magician")}
                 />
-
+                <mesh>
+                    <boxGeometry castshadow args={[10, 1, 10]} position={[0, -60, 0]} rotation={[Math.PI, 0, 0]}/>
+                    <meshStandardMaterial attach="material" map={map} />
+                </mesh>
+                
                 <OrbitControls enabled={false} />
             </Suspense>
         </Canvas>

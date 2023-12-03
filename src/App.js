@@ -12,11 +12,11 @@ import Desk from './Canvases/Desk';
 import DialogBox from './Dialogue/Dialogue';
 import BreathingTxt from './Dialogue/Breathing';
 import Letter from './Dialogue/Letter';
+import Credit from './Dialogue/Credit';
 
 import music from './assets/forest/forest-bgm.mp3';
 import { click } from '@testing-library/user-event/dist/click';
 
-// TODO: cosmic add "breath in/out" text
 // TODO: FINISH + credit page
 
 // TODO: set breathing times to 4
@@ -24,6 +24,7 @@ import { click } from '@testing-library/user-event/dist/click';
 /* scenes: 
 "forest", "cottage-pre-cosmic", "cosmic-pre-breath", "cosmic-post-breath", 
 "cottage-pre-garden", "garden", "cottage-pre-desk", "desk", "cottage-pre-potion", "potion-making"
+"post-finale"
 */
 
 function arrayContains(item, arr) {
@@ -62,14 +63,6 @@ function App() {
       window.removeEventListener("beforeunload", alertUser);
     };
   }, []);
-  useEffect(() => {
-    if(breathing) {
-      setBreathOpacity(1);
-    }
-    else {
-      setBreathOpacity(0);
-    }
-  }, [breathing]);
 
   const alertUser = (e) => {
     e.preventDefault();
@@ -78,9 +71,17 @@ function App() {
 
   useEffect(() => {
     if(!arrayContains(dialogScene, ["forest", "cottage-pre-cosmic", "cosmic-pre-breath", "cosmic-post-breath"])) {;
-      setProgressOpacity(1);
+      if(dialogScene !== "credits") {
+        setProgressOpacity(1);
+      }
     }
   }, [dialogScene]);
+  
+  useEffect(() => {
+    if(scene === "credits") {
+      setProgressOpacity(0);
+    }
+  }, [scene]);
 
   const reset = () => {
     bgm.pause();
@@ -155,9 +156,6 @@ function App() {
     setLetterPath(path);
   }
 
-  useEffect(() => {
-  }, [letterPath]);
-
   const exitIcon = () => {
     if(scene !== "forest") {
       return <ExitBtn
@@ -204,9 +202,24 @@ function App() {
         setTimeout(() => completeEnergizer(energizer), 1600);
       }} />
     }
+    if(scene === "credit") {
+      return <Credit />
+    }
   }
   const play = () => {
     bgm.play();
+  }
+
+  const breathTxt = () => {
+    if(breathing) {
+      return (
+        <div className="fade-wrapper">
+          <BreathingTxt
+          />
+        </div>
+      );
+    }
+    return null;
   }
   
   return (
@@ -224,7 +237,7 @@ function App() {
       />
       {popupIcon()}
       {exitIcon()}
-        {display()}
+      {display()}
       <Letter
       letterPath={letterPath}
       />
@@ -244,10 +257,7 @@ function App() {
       playMusic={play}
       reset={reset}
       />
-      <div className="fade-wrapper" style={{opacity: breathOpacity}}>
-        <BreathingTxt
-        />
-      </div>
+      {breathTxt()}
     </div>
   );
 }

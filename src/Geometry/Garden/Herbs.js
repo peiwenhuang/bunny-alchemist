@@ -11,10 +11,12 @@ import { useFrame } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
 import gsap from "gsap";
 
+import { Sphere } from "@react-three/drei";
+
 import plantPath from "../../assets/garden/stylized_plant_pack.glb";
 import { click } from "@testing-library/user-event/dist/click";
 
-export function Plant({ clickable, setClickable, type, handleSetDialogScene, position = [0, 0, 0], scale = 1.2 }) {
+export function Plant({ clickable, setClickable, type, handleSetDialogScene, position = [0, 0, 0], scale = 1.5 }) {
     const ref = useRef();
     const { nodes, materials } = useGLTF(plantPath);
 
@@ -44,16 +46,24 @@ export function Plant({ clickable, setClickable, type, handleSetDialogScene, pos
 
     if(type === "chamomile") {
         return (
-            <group position={position} scale={scale} ref={ref} rotation={[- Math.PI / 2, Math.PI / 6, 0]} dispose={null}>
+            <group ref={ref} rotation={[- Math.PI / 2, 0, 0]} dispose={null}
+            onClick={handleSetDialogScene}
+            onPointerEnter={handleHoverIn}
+            onPointerLeave={handleHoverOut}>
                 <group>
+                    <Sphere castShadow receiveShadow scale={8} position={position}>
+                        <meshPhysicalMaterial attach="material"
+                        roughness={0.01} transmission={1.2} thickness={0.4}/>
+                    </Sphere>
                     <mesh
+                    position={[position[0] + 0.5, position[1], position[2] - 5]}
+                    scale={scale}
+                    rotation={[0, 0, Math.PI]}
                     castShadow
                     receiveShadow
                     geometry={nodes.Object_5.geometry}
                     material={materials.White_Flower}
-                    onClick={handleSetDialogScene}
-                    onPointerEnter={handleHoverIn}
-                    onPointerLeave={handleHoverOut}
+                    
                     />
                 </group>
             </group>
@@ -61,16 +71,24 @@ export function Plant({ clickable, setClickable, type, handleSetDialogScene, pos
     }
     if(type === "evening-primrose") {
         return (
-            <group position={position} scale={scale} ref={ref} rotation={[- Math.PI / 2, 0, 0]} dispose={null}>
+            <group ref={ref} rotation={[- Math.PI / 2, 0, 0]} dispose={null}
+            onClick={handleSetDialogScene}
+            onPointerEnter={handleHoverIn}
+            onPointerLeave={handleHoverOut}>
                 <group>
+                    <Sphere castShadow receiveShadow scale={8} position={position}>
+                        <meshPhysicalMaterial attach="material"
+                        roughness={0.01} transmission={1.2} thickness={0.4}/>
+                    </Sphere>
                     <mesh
+                    position={[position[0], position[1] - 5, position[2] - 4]}
+                    scale={scale}
+                    rotation={[0, 0, - Math.PI / 2]}
                     castShadow
                     receiveShadow
                     geometry={nodes.Object_6.geometry}
                     material={materials.Yellow_Flower}
-                    onClick={handleSetDialogScene}
-                    onPointerEnter={handleHoverIn}
-                    onPointerLeave={handleHoverOut}
+                    
                     />
                 </group>
             </group>
@@ -78,16 +96,22 @@ export function Plant({ clickable, setClickable, type, handleSetDialogScene, pos
     }
     if(type === "rose") {
         return (
-            <group position={position} scale={scale} ref={ref} rotation={[- Math.PI / 2, 0, 0]} dispose={null}>
+            <group ref={ref} rotation={[- Math.PI / 2, 0, 0]} dispose={null}
+            onClick={handleSetDialogScene}
+            onPointerEnter={handleHoverIn}
+            onPointerLeave={handleHoverOut}>
                 <group>
+                    <Sphere castShadow receiveShadow scale={8} position={position}>
+                        <meshPhysicalMaterial attach="material"
+                        roughness={0.01} transmission={1.2} thickness={0.4}/>
+                    </Sphere>
                     <mesh
+                    position={[position[0] - 5, position[1] - 2, position[2] - 5]}
+                    scale={scale}
                     castShadow
                     receiveShadow
                     geometry={nodes.Object_2.geometry}
                     material={materials.Rose}
-                    onClick={handleSetDialogScene}
-                    onPointerEnter={handleHoverIn}
-                    onPointerLeave={handleHoverOut}
                     />
                 </group>
             </group>
