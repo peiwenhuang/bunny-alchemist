@@ -26,7 +26,7 @@ function Desk({ handleCardFlip }) {
     map.wrapS = THREE.RepeatWrapping;
     map.wrapT = THREE.RepeatWrapping;
     map.offset.set(0, 0);
-    map.repeat.set(6, 6);
+    map.repeat.set(10, 10);
     const handleDeskFlip = (dialogScene, energizer) => {
         setFlipable(false);
         setTimeout(() => handleCardFlip(dialogScene, energizer), 1000);
@@ -84,11 +84,11 @@ function Desk({ handleCardFlip }) {
                 handleCardFlip={() => handleDeskFlip("desk-the-magician", "The Magician")}
                 />
                 <mesh>
-                    <boxGeometry castshadow args={[10, 1, 10]} position={[0, -60, 0]} rotation={[Math.PI, 0, 0]}/>
+                    <boxGeometry castshadow args={[20, 1, 20]} position={[0, -60, 0]} rotation={[Math.PI, 0, 0]}/>
                     <meshStandardMaterial attach="material" map={map} />
                 </mesh>
                 
-                <OrbitControls enabled={false} />
+                <OrbitControls enabled={false} enablePan={false} />
             </Suspense>
         </Canvas>
     );

@@ -201,7 +201,7 @@ const DialogBox = ({ scene, handleSetScene, handleSetDialogScene, handleCloseDia
         ],
         "garden": [
             {
-                message: "Only the hovering plants are ripe for use. Click on them to see their effects.",
+                message: "Only the floating plants are ripe for use. Drag around to explore the garden, click on the herbs to see their effects.",
                 speaker: "Leymus",
                 img: character,
                 response: [

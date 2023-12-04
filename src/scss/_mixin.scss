@@ -46,16 +46,12 @@
     @include drop-shadow($gold-darker, 0.2px, 0.8px);
 
     @include device(mobile) {
-        border-radius: 48px;
+        @include br-16;
     }
 }
 
 @mixin text-response {
     @include br-16;
-
-    @include device(mobile) {
-        border-radius: 48px;
-    }
 
     div {
         @include text-box;

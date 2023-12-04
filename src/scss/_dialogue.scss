@@ -1,7 +1,7 @@
 .dialog-wrapper {
     z-index: 100;
     position: fixed;
-    top: 68vh;
+    top: 66vh;
     left: 50vw;
     width: 100vw;
     transform: translateX(-50%); /* to center the dialogue window */
@@ -24,7 +24,7 @@
 }
 
 .dialogWindow {
-    width: 60vw;
+    width: 68vw;
     height: 18vh;
     z-index: 100;
     display: flex;
@@ -33,15 +33,14 @@
     padding: 8px 48px;
 
     @include device(tablet) {
-        width: 80vw;
+        width: 80%;
     }
     @include device(mobile) {
-        margin: auto 48px;
-        height: 24vh;
-        padding: 8px 16px;
-
         flex-direction: column;
+        align-items: flex-end;
         height: auto;
+        margin: auto 48px;
+        padding: 8px 16px;
     }
     
     .img-container {
@@ -51,7 +50,6 @@
 
         @include device(mobile) {
             justify-content: end;
-            max-width: 100%;
         }
     }
     img {
@@ -59,7 +57,7 @@
         max-height: 300px;
 
         @include device(mobile) {
-            max-height: 10vh;
+            max-height: 6vh;
         }
     }
 
@@ -90,13 +88,15 @@
             padding: 8px 16px;
         }
         @include device(mobile) {
-            padding: 8px 8px;
+            max-width: 100%;
+            width: 100%;
+            padding: 8px 0;
         }
     }
 }
 
 .dialogFooter {
-    width: 40vw;
+    width: 48vw;
     @include p-16;
     color: white;
     display: flex;
@@ -108,9 +108,14 @@
         justify-content: flex-start;
         width: 80%;
     }
+    @include device(mobile) {
+        width: 100%;
+        box-sizing: border-box;
+        margin: auto 48px;
+    }
 
     li {
-        min-width: 48%;
+        min-width: 44%;
         @include text-response;
 
         .primary {

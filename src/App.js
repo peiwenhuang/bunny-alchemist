@@ -70,15 +70,13 @@ function App() {
   };
 
   useEffect(() => {
-    if(!arrayContains(dialogScene, ["forest", "cottage-pre-cosmic", "cosmic-pre-breath", "cosmic-post-breath"])) {;
-      if(dialogScene !== "credits") {
-        setProgressOpacity(1);
-      }
+    if(!arrayContains(dialogScene, ["forest", "cottage-pre-cosmic", "cosmic-pre-breath", "cosmic-post-breath"])) {
+      setProgressOpacity(1);
     }
   }, [dialogScene]);
   
   useEffect(() => {
-    if(scene === "credits") {
+    if(scene === "credit") {
       setProgressOpacity(0);
     }
   }, [scene]);
@@ -157,7 +155,7 @@ function App() {
   }
 
   const exitIcon = () => {
-    if(scene !== "forest") {
+    if(!arrayContains(scene, ["forest","credit"])) {
       return <ExitBtn
       restart={() => {
         reset();
