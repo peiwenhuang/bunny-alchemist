@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/bunny-alchemist/static/css/main.d5af2928.css",
-    "main.js": "/bunny-alchemist/static/js/main.15ffc8bb.js",
+    "main.css": "/bunny-alchemist/static/css/main.6659d9ae.css",
+    "main.js": "/bunny-alchemist/static/js/main.7211c812.js",
     "static/js/787.815ed969.chunk.js": "/bunny-alchemist/static/js/787.815ed969.chunk.js",
     "static/media/back.jpg": "/bunny-alchemist/static/media/back.e2a1632ab30a926654ba.jpg",
     "static/media/stylized_plant_pack.glb": "/bunny-alchemist/static/media/stylized_plant_pack.ddc1e769e4e7b8348f9a.glb",
@@ -26,12 +26,12 @@
     "static/media/the-magician-tarot-card.jpg": "/bunny-alchemist/static/media/the-magician-tarot-card.2b4c7a873f2e85200af3.jpg",
     "static/media/strength-tarot-card.jpg": "/bunny-alchemist/static/media/strength-tarot-card.d51e83950aca80314a87.jpg",
     "index.html": "/bunny-alchemist/index.html",
-    "main.d5af2928.css.map": "/bunny-alchemist/static/css/main.d5af2928.css.map",
-    "main.15ffc8bb.js.map": "/bunny-alchemist/static/js/main.15ffc8bb.js.map",
+    "main.6659d9ae.css.map": "/bunny-alchemist/static/css/main.6659d9ae.css.map",
+    "main.7211c812.js.map": "/bunny-alchemist/static/js/main.7211c812.js.map",
     "787.815ed969.chunk.js.map": "/bunny-alchemist/static/js/787.815ed969.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d5af2928.css",
-    "static/js/main.15ffc8bb.js"
+    "static/css/main.6659d9ae.css",
+    "static/js/main.7211c812.js"
   ]
 }
