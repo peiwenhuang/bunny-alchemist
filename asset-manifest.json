@@ -1,15 +1,37 @@
 {
   "files": {
-    "main.css": "/bunny-alchemist/static/css/main.5ae80b33.css",
-    "main.js": "/bunny-alchemist/static/js/main.3a33515b.js",
+    "main.css": "/bunny-alchemist/static/css/main.d5af2928.css",
+    "main.js": "/bunny-alchemist/static/js/main.15ffc8bb.js",
     "static/js/787.815ed969.chunk.js": "/bunny-alchemist/static/js/787.815ed969.chunk.js",
+    "static/media/back.jpg": "/bunny-alchemist/static/media/back.e2a1632ab30a926654ba.jpg",
+    "static/media/stylized_plant_pack.glb": "/bunny-alchemist/static/media/stylized_plant_pack.ddc1e769e4e7b8348f9a.glb",
+    "static/media/wooden_table.glb": "/bunny-alchemist/static/media/wooden_table.bf8ddd18d18211c86778.glb",
+    "static/media/envelope.glb": "/bunny-alchemist/static/media/envelope.036a38670d75cfafa676.glb",
+    "static/media/garden.jpg": "/bunny-alchemist/static/media/garden.7f1448fc676f26087d59.jpg",
+    "static/media/forest-bgm.mp3": "/bunny-alchemist/static/media/forest-bgm.1cab20c61d42e4ffc64e.mp3",
+    "static/media/forest.jpg": "/bunny-alchemist/static/media/forest.43d1f493a904861560e5.jpg",
+    "static/media/strength_poison.glb": "/bunny-alchemist/static/media/strength_poison.f0fda2bf1b1115de7b21.glb",
+    "static/media/cottage.jpg": "/bunny-alchemist/static/media/cottage.545db27b61b8f6737d7f.jpg",
+    "static/media/littlegriffons_hollandicus01.glb": "/bunny-alchemist/static/media/littlegriffons_hollandicus01.0bd04dfd4a0d3a185b3b.glb",
+    "static/media/carpet.jpg": "/bunny-alchemist/static/media/carpet.534090f1c29c5b18c7b5.jpg",
+    "static/media/space.glb": "/bunny-alchemist/static/media/space.f08307eb7ba6193db6f3.glb",
+    "static/media/griffon.png": "/bunny-alchemist/static/media/griffon.292a67d6b5452a5fd6a0.png",
+    "static/media/camomile.png": "/bunny-alchemist/static/media/camomile.f68d0ade6a9541f31b81.png",
+    "static/media/galaxy.png": "/bunny-alchemist/static/media/galaxy.a1779865103d449e0dbd.png",
+    "static/media/love-letter-1.png": "/bunny-alchemist/static/media/love-letter-1.60d2c6578f4d679e5b04.png",
+    "static/media/rose.png": "/bunny-alchemist/static/media/rose.ab09fc92c55c370bc9a3.png",
+    "static/media/purple-potion.png": "/bunny-alchemist/static/media/purple-potion.5610c1eb8ecb1a53b2bb.png",
+    "static/media/evening-primrose.png": "/bunny-alchemist/static/media/evening-primrose.96c132fb2e86d8558969.png",
+    "static/media/the-fool-tarot-card.jpg": "/bunny-alchemist/static/media/the-fool-tarot-card.59a6658fd9b71e110f95.jpg",
+    "static/media/the-magician-tarot-card.jpg": "/bunny-alchemist/static/media/the-magician-tarot-card.2b4c7a873f2e85200af3.jpg",
+    "static/media/strength-tarot-card.jpg": "/bunny-alchemist/static/media/strength-tarot-card.d51e83950aca80314a87.jpg",
     "index.html": "/bunny-alchemist/index.html",
-    "main.5ae80b33.css.map": "/bunny-alchemist/static/css/main.5ae80b33.css.map",
-    "main.3a33515b.js.map": "/bunny-alchemist/static/js/main.3a33515b.js.map",
+    "main.d5af2928.css.map": "/bunny-alchemist/static/css/main.d5af2928.css.map",
+    "main.15ffc8bb.js.map": "/bunny-alchemist/static/js/main.15ffc8bb.js.map",
     "787.815ed969.chunk.js.map": "/bunny-alchemist/static/js/787.815ed969.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5ae80b33.css",
-    "static/js/main.3a33515b.js"
+    "static/css/main.d5af2928.css",
+    "static/js/main.15ffc8bb.js"
   ]
 }
