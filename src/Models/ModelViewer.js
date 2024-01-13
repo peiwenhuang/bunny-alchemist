@@ -1,4 +1,4 @@
-import React, { useRef, useState, Suspense } from 'react';
+import React, { Suspense } from 'react';
 import { OrbitControls } from "@react-three/drei";
 import GltfModel from './Model';
 

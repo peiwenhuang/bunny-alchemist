@@ -6,15 +6,13 @@ Source: https://sketchfab.com/3d-models/stylized-plant-pack-d866603021fa4939b8e7
 Title: Stylized Plant Pack
 */
 
-import React, { useRef, useEffect } from "react";
-import { useFrame } from "@react-three/fiber";
+import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import gsap from "gsap";
 
 import { Sphere } from "@react-three/drei";
 
 import plantPath from "../../assets/garden/stylized_plant_pack.glb";
-import { click } from "@testing-library/user-event/dist/click";
 
 export function Plant({ clickable, setClickable, type, handleSetDialogScene, position = [0, 0, 0], scale = 1.5 }) {
     const ref = useRef();

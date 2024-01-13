@@ -1,5 +1,4 @@
 import React, { useRef, useState, Suspense } from 'react';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 // designing dialogue boxes (ref: https://codeworkshop.dev/blog/2020-03-01-creating-an-rpg-dialog-effect-with-react-and-react-spring)
 

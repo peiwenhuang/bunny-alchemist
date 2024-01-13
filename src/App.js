@@ -1,6 +1,5 @@
-import React, { useEffect, useState, Suspense } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { isTablet, isMobile } from './Canvases/Desk';
 import { ExitBtn, ProgressBtn } from './Components/Button';
 import Progress from './Components/Progress';
 import { ProgressPopup } from './Components/Progress';
@@ -15,10 +14,8 @@ import Letter from './Dialogue/Letter';
 import Credit from './Dialogue/Credit';
 
 import music from './assets/forest/forest-bgm.mp3';
-import { click } from '@testing-library/user-event/dist/click';
 
-// TODO: FINISH + credit page
-
+// TODO: whether to do setClickable for Garden
 // TODO: set breathing times to 4
 
 /* scenes: 
@@ -49,7 +46,6 @@ function App() {
   const [ingredients, setIngredients] = useState(INIT_INGREDIENTS);
   const [active, setActive] = useState(-1);
   const [breathing, setBreathing] = useState(false);
-  const [breathOpacity, setBreathOpacity] = useState(0);
   const [clickable, setClickable] = useState(true);
   const [makePotion, setMakePotion] = useState(false);
   const [letterPath, setLetterPath] = useState(null);
@@ -69,12 +65,13 @@ function App() {
     e.returnValue = "";
   };
 
+  // showing progress bar after meditation practice
   useEffect(() => {
     if(!arrayContains(dialogScene, ["forest", "cottage-pre-cosmic", "cosmic-pre-breath", "cosmic-post-breath"])) {
       setProgressOpacity(1);
     }
   }, [dialogScene]);
-  
+  // hiding progress bar in credits page
   useEffect(() => {
     if(scene === "credit") {
       setProgressOpacity(0);
@@ -171,6 +168,7 @@ function App() {
     }
   }
   
+  // showing environments based on scene
   const display = () => {
     if(scene === "forest") {
       return <Forest />
@@ -204,10 +202,12 @@ function App() {
       return <Credit />
     }
   }
+  // play background music
   const play = () => {
     bgm.play();
   }
 
+  // show breathing text instructions
   const breathTxt = () => {
     if(breathing) {
       return (
